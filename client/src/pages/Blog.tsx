@@ -12,7 +12,7 @@ export default function Blog() {
   const { t } = useTranslation();
 
   const { data, isLoading } = useQuery<{ posts: BlogPost[] }>({
-    queryKey: ["/api/blog/posts"],
+    queryKey: ["/api/posts"],
   });
 
   const posts = data?.posts || [];
@@ -20,7 +20,7 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main className="pt-32 pb-20" style={{ paddingTop: 'calc(8rem + 30px)' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">

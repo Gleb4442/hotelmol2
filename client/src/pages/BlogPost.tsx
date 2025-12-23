@@ -13,7 +13,7 @@ export default function BlogPostPage() {
   const params = useParams<{ slug: string }>();
 
   const { data, isLoading, error } = useQuery<{ post: BlogPost }>({
-    queryKey: ["/api/blog/posts", params.slug],
+    queryKey: [`/api/posts/${params.slug}`],
     queryFn: async () => {
       const response = await fetch(`/api/blog/posts/${params.slug}`);
       if (!response.ok) {
@@ -64,7 +64,7 @@ export default function BlogPostPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main className="pt-32 pb-20">
         <article className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
@@ -84,7 +84,7 @@ export default function BlogPostPage() {
                   </time>
                 </span>
               </div>
-              
+
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6" data-testid="heading-post-title">
                 {post.title}
               </h1>
@@ -109,7 +109,7 @@ export default function BlogPostPage() {
               )}
             </header>
 
-            <div 
+            <div
               className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary"
               data-testid="content-post-body"
             >
