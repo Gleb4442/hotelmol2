@@ -1,7 +1,7 @@
 import { type LeadSubmission, type InsertLead, type CookieConsent, type InsertCookieConsent, type WaitlistSubmission, type InsertWaitlist, type BlogPost, type InsertBlogPost, type SiteSetting, leadSubmissions, cookieConsents, waitlistSubmissions, blogPosts, siteSettings } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, and } from "drizzle-orm";
 
 export interface IStorage {
 
@@ -21,7 +21,7 @@ export interface IStorage {
   getBlogPosts(): Promise<BlogPost[]>;
   getPublishedBlogPosts(): Promise<BlogPost[]>;
   getBlogPostById(id: string): Promise<BlogPost | undefined>;
-  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
+  getBlogPost(slug: string): Promise<BlogPost | undefined>;
 
 
   // Site settings
@@ -104,7 +104,7 @@ export class MemStorage implements IStorage {
     return undefined;
   }
 
-  async getBlogPostBySlug(): Promise<BlogPost | undefined> {
+  async getBlogPost(slug: string): Promise<BlogPost | undefined> {
     return undefined;
   }
 
@@ -159,7 +159,12 @@ export class PostgresStorage implements IStorage {
   }
 
   async getPublishedBlogPosts(): Promise<BlogPost[]> {
-    return await db.select().from(blogPosts).where(eq(blogPosts.published, true)).orderBy(desc(blogPosts.publishedAt));
+    return await db.select().from(blogPosts).where(eq(blogPosts.status, 'published')).orderBy(desc(blogPosts.publishedAt));
+  }
+
+  async getBlogPost(slug: string): Promise<BlogPost | undefined> {
+    const [post] = await db.select().from(blogPosts).where(and(eq(blogPosts.slug, slug), eq(blogPosts.status, 'published')));
+    return post;
   }
 
   async getBlogPostById(id: string): Promise<BlogPost | undefined> {

@@ -56,20 +56,16 @@ export default function Blog() {
                           </span>
                         </div>
                         <CardTitle className="text-xl md:text-2xl hover:text-primary transition-colors" data-testid={`text-post-title-${post.id}`}>
-                          {post.title}
+                          {post.seoTitle || post.title}
                         </CardTitle>
-                        {post.excerpt && (
-                          <CardDescription className="text-base mt-2" data-testid={`text-post-excerpt-${post.id}`}>
-                            {post.excerpt}
-                          </CardDescription>
-                        )}
+
                       </CardHeader>
                       <CardContent>
                         <div className="flex items-center justify-between">
                           <div className="flex flex-wrap gap-2">
-                            {post.keywords?.slice(0, 3).map((keyword, index) => (
-                              <Badge key={index} variant="secondary" className="text-xs" data-testid={`badge-keyword-${post.id}-${index}`}>
-                                {keyword}
+                            {Array.isArray(post.tags) && post.tags.slice(0, 3).map((tag, index) => (
+                              <Badge key={index} variant="secondary" className="text-xs" data-testid={`badge-tag-${post.id}-${index}`}>
+                                {String(tag)}
                               </Badge>
                             ))}
                           </div>

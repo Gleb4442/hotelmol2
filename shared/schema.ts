@@ -148,17 +148,18 @@ export type InsertWaitlist = z.infer<typeof insertWaitlistSchema>;
 export type Waitlist = z.infer<typeof waitlistSchema>;
 
 // Blog Posts table for SEO-optimized blog
+// Blog Posts table aligned with existing DB structure
 export const blogPosts = pgTable("blog_posts", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  title: text("title").notNull(),
-  slug: text("slug").notNull().unique(),
-  content: text("content").notNull(), // MDX content
-  excerpt: text("excerpt"), // Short description for listing
-  coverImage: text("cover_image"), // Cover image URL
-  keywords: text("keywords").array(), // SEO keywords array
-  metaTitle: text("meta_title"), // Custom meta title
-  metaDescription: text("meta_description"), // Custom meta description
-  published: boolean("published").notNull().default(false),
+  title: varchar("title").notNull(),
+  slug: varchar("slug").notNull().unique(),
+  content: text("content").notNull(),
+  authorId: varchar("author_id"),
+  status: varchar("status").default('draft'), // 'published' or 'draft'
+  featuredImage: text("featured_image"),
+  seoTitle: varchar("seo_title"),
+  seoDescription: text("seo_description"),
+  tags: jsonb("tags").default([]),
   publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),

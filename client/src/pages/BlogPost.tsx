@@ -15,7 +15,7 @@ export default function BlogPostPage() {
   const { data, isLoading, error } = useQuery<{ post: BlogPost }>({
     queryKey: [`/api/posts/${params.slug}`],
     queryFn: async () => {
-      const response = await fetch(`/api/blog/posts/${params.slug}`);
+      const response = await fetch(`/api/posts/${params.slug}`);
       if (!response.ok) {
         throw new Error("Post not found");
       }
@@ -86,27 +86,21 @@ export default function BlogPostPage() {
               </div>
 
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6" data-testid="heading-post-title">
-                {post.title}
+                {post.seoTitle || post.title}
               </h1>
 
-              {post.excerpt && (
-                <p className="text-xl text-muted-foreground leading-relaxed" data-testid="text-post-excerpt">
-                  {post.excerpt}
-                </p>
-              )}
-
-              {post.keywords && post.keywords.length > 0 && (
+              {Array.isArray(post.tags) && post.tags.length > 0 ? (
                 <div className="flex items-center gap-2 mt-6">
                   <Tag className="h-4 w-4 text-muted-foreground" />
                   <div className="flex flex-wrap gap-2">
-                    {post.keywords.map((keyword, index) => (
-                      <Badge key={index} variant="secondary" data-testid={`badge-keyword-${index}`}>
-                        {keyword}
+                    {(post.tags as string[]).map((tag, index) => (
+                      <Badge key={index} variant="secondary" data-testid={`badge-tag-${index}`}>
+                        {String(tag)}
                       </Badge>
                     ))}
                   </div>
                 </div>
-              )}
+              ) : null}
             </header>
 
             <div

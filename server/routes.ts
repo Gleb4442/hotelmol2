@@ -179,6 +179,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/posts/:slug", async (req, res) => {
+    try {
+      const post = await storage.getBlogPost(req.params.slug);
+      if (!post) {
+        return res.status(404).json({ success: false, message: "Post not found" });
+      }
+      res.json({ success: true, post });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to fetch post" });
+    }
+  });
+
   // --- Health ---
   app.get("/api/health", (req, res) => {
     res.json({ status: 'ok', database: 'connected' });
