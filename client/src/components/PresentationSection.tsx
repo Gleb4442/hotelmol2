@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
 import { useTranslation } from "@/lib/TranslationContext";
 
 export default function PresentationSection() {
@@ -14,23 +12,7 @@ export default function PresentationSection() {
               {t("presentation.title")}
             </h2>
           </div>
-          
-          <Button 
-            size="lg"
-            asChild
-            className="shadow-lg shadow-primary/30"
-            data-testid="button-download-presentation"
-          >
-            <a 
-              href="/roomie-presentation.pdf" 
-              download="Roomie-Presentation.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Download className="mr-2 h-5 w-5" />
-              {t("presentation.download")}
-            </a>
-          </Button>
+
         </div>
       </div>
     </section>
