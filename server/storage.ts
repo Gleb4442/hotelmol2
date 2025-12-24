@@ -1,4 +1,4 @@
-import { type LeadSubmission, type InsertLead, type CookieConsent, type InsertCookieConsent, type WaitlistSubmission, type InsertWaitlist, type BlogPost, type InsertBlogPost, type SiteSetting, leadSubmissions, cookieConsents, waitlistSubmissions, blogPosts, siteSettings } from "@shared/schema";
+import { type LeadSubmission, type InsertLead, type CookieConsent, type InsertCookieConsent, type WaitlistSubmission, type InsertWaitlist, type BlogPost, type InsertBlogPost, type SiteSetting, leadSubmissions, cookieConsents, waitlistSubmissions, blogPosts, siteSettings } from "../shared/schema.js";
 import { randomUUID } from "crypto";
 import { db } from "./db.js";
 import { desc, eq, and } from "drizzle-orm";
