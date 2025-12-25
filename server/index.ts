@@ -64,17 +64,14 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Only start server if not in Vercel environment
-  if (!process.env.VERCEL) {
-    const port = parseInt(process.env.PORT || '5000', 10);
-    httpServer.listen({
-      port,
-      host: "0.0.0.0",
-      reusePort: true,
-    }, () => {
-      log(`serving on port ${port}`);
-    });
-  }
+  // Ensure server listens on Railway's assigned port or default to 5000
+  const port = parseInt(process.env.PORT || '5000', 10);
+  httpServer.listen({
+    port,
+    host: "0.0.0.0",
+  }, () => {
+    log(`serving on port ${port}`);
+  });
 })();
 
 // Export for Vercel
