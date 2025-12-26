@@ -1,3 +1,5 @@
+import { MessageSquare, Brain, Sparkles, TrendingUp, CheckCircle } from "lucide-react";
+import { useTranslation } from "@/lib/TranslationContext";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
