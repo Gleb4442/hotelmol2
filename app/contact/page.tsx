@@ -195,13 +195,13 @@ export default function Contact() {
                                 <h3 className="font-serif text-xl font-semibold mb-4">{t("contact.quickSupport")}</h3>
                                 <div className="flex gap-4 items-center justify-center">
                                     <Button variant="outline" size="icon" className="h-14 w-14" asChild>
-                                        <a href="https://t.me/hotelmolmanager" target="_blank" rel="noopener noreferrer"><FaTelegram className="h-7 w-7 text-[#0088cc]" /></a>
+                                        <a href="https://t.me/hotelmolmanager" target="_blank" rel="noopener noreferrer"><FaTelegram className="h-11 w-11 text-[#0088cc]" /></a>
                                     </Button>
                                     <Button variant="outline" size="icon" className="h-14 w-14" asChild>
-                                        <a href="https://wa.me/380931603830" target="_blank" rel="noopener noreferrer"><FaWhatsapp className="h-7 w-7 text-[#25D366]" /></a>
+                                        <a href="https://wa.me/380931603830" target="_blank" rel="noopener noreferrer"><FaWhatsapp className="h-11 w-11 text-[#25D366]" /></a>
                                     </Button>
                                     <Button variant="outline" size="icon" className="h-14 w-14" asChild>
-                                        <a href="viber://chat?number=%2B380931603830" target="_blank" rel="noopener noreferrer"><FaViber className="h-7 w-7 text-[#7360f2]" /></a>
+                                        <a href="viber://chat?number=%2B380931603830" target="_blank" rel="noopener noreferrer"><FaViber className="h-11 w-11 text-[#7360f2]" /></a>
                                     </Button>
                                 </div>
                             </Card>
