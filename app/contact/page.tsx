@@ -195,13 +195,13 @@ export default function Contact() {
                                 <h3 className="font-serif text-xl font-semibold mb-4">{t("contact.quickSupport")}</h3>
                                 <div className="flex gap-10 items-center justify-center py-4">
                                     <a href="https://t.me/hotelmolmanager" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-110">
-                                        <FaTelegram className="h-20 w-20 text-[#0088cc]" />
+                                        <FaTelegram className="h-12 w-12 text-[#0088cc]" />
                                     </a>
                                     <a href="https://wa.me/380931603830" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-110">
-                                        <FaWhatsapp className="h-20 w-20 text-[#25D366]" />
+                                        <FaWhatsapp className="h-12 w-12 text-[#25D366]" />
                                     </a>
                                     <a href="viber://chat?number=%2B380931603830" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-110">
-                                        <FaViber className="h-20 w-20 text-[#7360f2]" />
+                                        <FaViber className="h-12 w-12 text-[#7360f2]" />
                                     </a>
                                 </div>
                             </Card>
