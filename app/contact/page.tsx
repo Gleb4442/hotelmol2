@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { Mail, Phone, ArrowRight } from "lucide-react";
-import { FaTelegram, FaWhatsapp, FaViber } from "react-icons/fa";
+import { FaTelegram, FaWhatsapp, FaViber, FaFacebookMessenger } from "react-icons/fa";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -202,6 +202,9 @@ export default function Contact() {
                                     </a>
                                     <a href="viber://chat?number=%2B380931603830" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-110">
                                         <FaViber className="h-12 w-12 text-[#7360f2]" />
+                                    </a>
+                                    <a href="https://m.me/hotelmolmanager" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-110">
+                                        <FaFacebookMessenger className="h-12 w-12 text-[#0084FF]" />
                                     </a>
                                 </div>
                             </Card>
