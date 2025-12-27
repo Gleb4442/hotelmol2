@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./app/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
+    "./client/index.html",
+    "./client/src/**/*.{js,jsx,ts,tsx}"
+  ],
   theme: {
     extend: {
       borderRadius: {
@@ -85,7 +90,7 @@ export default {
       fontFamily: {
         sans: ["Inter", "var(--font-sans)"],
         serif: ["Fraunces", "var(--font-serif)"],
-        rounded: ["Poppins", "var(--font-rounded)"],
+        rounded: ["Poppins", "var(--font-poppins)"],
         mono: ["var(--font-mono)"],
       },
       keyframes: {

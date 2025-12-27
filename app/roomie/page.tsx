@@ -72,6 +72,13 @@ export default function Roomie() {
 
             <section className="py-20">
                 <div className="container mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="font-serif text-4xl font-semibold mb-4">{t("roomie.features.title")}</h2>
+                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                            {t("roomie.features.subtitle")}
+                        </p>
+                    </div>
+
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                         {features.map((f, i) => (
                             <Card key={i} className="p-6 hover-elevate">
@@ -80,6 +87,48 @@ export default function Roomie() {
                                 <p className="text-muted-foreground">{f.description}</p>
                             </Card>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-20 bg-muted/30">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="neon-border-wrapper relative">
+                            <Card className="p-12 bg-gradient-to-br from-background to-muted/50 relative z-10">
+                                <h2 className="font-serif text-4xl font-semibold mb-8">{t("roomie.capabilities.title")}</h2>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    {capabilities.map((capability, index) => (
+                                        <div key={index} className="flex items-start gap-3">
+                                            <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                                            <span className="text-base text-foreground">{capability}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </Card>
+                        </div>
+
+                        <style>{`
+                            .neon-border-wrapper {
+                                padding: 0;
+                            }
+                            .neon-border-wrapper::after {
+                                content: '';
+                                position: absolute;
+                                inset: 0;
+                                border-radius: 0.5625rem;
+                                background: radial-gradient(circle at center, hsl(207, 83%, 52%) 0%, hsl(207, 83%, 32%) 100%);
+                                animation: neonPulse 2s ease-in-out infinite;
+                                opacity: 0.3;
+                                filter: blur(12px);
+                                z-index: 0;
+                            }
+                            @keyframes neonPulse {
+                                0% { opacity: 0.15; transform: scale(0.98); }
+                                50% { opacity: 0.5; transform: scale(1.02); }
+                                100% { opacity: 0.15; transform: scale(0.98); }
+                            }
+                        `}</style>
                     </div>
                 </div>
             </section>
