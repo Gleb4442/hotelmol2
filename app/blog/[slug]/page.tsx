@@ -14,8 +14,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
+    const { slug: encodedSlug } = await params;
+    const slug = decodeURIComponent(encodedSlug);
+    const post = await db.query.blogPosts.findFirst({
+        where: (posts: any, { eq }: any) => eq(posts.slug, slug),
+    });
     if (!post) return { title: "Post Not Found" };
 
     return {
@@ -25,8 +28,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
+    const { slug: encodedSlug } = await params;
+    const slug = decodeURIComponent(encodedSlug);
+    const post = await db.query.blogPosts.findFirst({
+        where: (posts: any, { eq }: any) => eq(posts.slug, slug),
+    });
 
     if (!post) {
         notFound();
