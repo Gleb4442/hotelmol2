@@ -83,7 +83,7 @@ export default function Solutions() {
                                 <div className="relative p-3 bg-gradient-to-br from-primary/10 via-primary/5 to-primary/15 rounded-xl shadow-xl border border-primary/20">
                                     <div className="overflow-hidden rounded-lg bg-white">
                                         <img
-                                            src="/luxury-hotel.png"
+                                            src="/assets/luxury-hotel.jpg"
                                             alt="Luxury hotel with ocean view"
                                             className="w-full h-auto object-cover"
                                         />
@@ -119,7 +119,7 @@ export default function Solutions() {
                                 <div className="relative p-3 bg-gradient-to-br from-primary/10 via-primary/5 to-primary/15 rounded-xl shadow-xl border border-primary/20">
                                     <div className="overflow-hidden rounded-lg bg-white">
                                         <img
-                                            src="/hotel-chain.png"
+                                            src="/assets/hotel-chain.jpg"
                                             alt="Modern hotel chain buildings"
                                             className="w-full h-auto object-cover"
                                         />
