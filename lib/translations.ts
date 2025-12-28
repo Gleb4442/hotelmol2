@@ -2209,6 +2209,26 @@ export const translations = {
     "notFound.contact": "Зв'язатися з нами",
     "notFound.solutions": "Переглянути рішення",
   },
+  pl: {
+    // Header
+    "nav.roomie": "Roomie",
+    "nav.solutions": "Rozwiązania",
+    "nav.caseStudies": "Studia przypadków",
+    "nav.blog": "Blog",
+    "nav.about": "O nas",
+    "nav.contact": "Kontakt",
+    "nav.languageSwitcher": "Język",
+
+    // Hero
+    "hero.title": "Automatyzacja biznesowa oparta na AI dla hoteli",
+    "hero.subtitle": "Zoptymalizuj operacje hotelowe dzięki inteligentnym agentom AI. Zmniejsz koszty o 30% i zwiększ wydajność przy minimalnym wysiłku.",
+    "hero.cta": "Zarezerwuj demo",
+
+    // Common
+    "common.learnMore": "Dowiedz się więcej",
+    "common.getStarted": "Rozpocznij",
+    "common.contactUs": "Skontaktuj się z nami",
+  },
 } as const;
 
 export type TranslationKey = keyof typeof translations.en;
