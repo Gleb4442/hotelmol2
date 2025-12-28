@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, Tag, Sparkles, Loader2, CheckCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useTranslation } from "@/lib/TranslationContext";
 import type { BlogPost } from "@/shared/schema";
@@ -12,6 +13,7 @@ import { apiRequest } from "@/lib/queryClient";
 
 export default function BlogPostClient({ post }: { post: BlogPost }) {
     const { t, language } = useTranslation();
+    const router = useRouter();
     const [summaryData, setSummaryData] = useState<{ summary: string; keyPoints: string[] } | null>(null);
 
     const summaryMutation = useMutation({
@@ -30,11 +32,9 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
     return (
         <article className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
-                <Button variant="ghost" className="mb-8" asChild>
-                    <Link href="/blog">
-                        <ArrowLeft className="mr-2 h-4 w-4" />
-                        {t("blog.backToBlog")}
-                    </Link>
+                <Button variant="ghost" className="mb-8" onClick={() => router.push('/blog')}>
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    {t("blog.backToBlog")}
                 </Button>
 
                 <header className="mb-8">
