@@ -30,12 +30,12 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
     return (
         <article className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
-                <Link href="/blog">
-                    <Button variant="ghost" className="mb-8">
+                <Button variant="ghost" className="mb-8" asChild>
+                    <Link href="/blog">
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         {t("blog.backToBlog")}
-                    </Button>
-                </Link>
+                    </Link>
+                </Button>
 
                 <header className="mb-8">
                     <div className="flex items-center gap-4 text-muted-foreground mb-4">
@@ -114,12 +114,12 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
                 </div>
 
                 <footer className="mt-12 pt-8 border-t">
-                    <Link href="/blog">
-                        <Button variant="outline">
+                    <Button variant="outline" asChild>
+                        <Link href="/blog">
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             {t("blog.backToBlog")}
-                        </Button>
-                    </Link>
+                        </Link>
+                    </Button>
                 </footer>
             </div>
         </article>
