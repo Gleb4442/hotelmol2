@@ -216,6 +216,9 @@ export const translations = {
     "blog.readMore": "Read More",
     "blog.notFound": "Article not found",
     "blog.backToBlog": "Back to Blog",
+    "blog.aiSummary": "Brief Summary",
+    "blog.summaryTitle": "AI Article Overview",
+    "blog.keyPoints": "Key Takeaways",
 
     // Home - How Roomie Works
     "home.howWorks.badge": "The Process",
@@ -1036,6 +1039,9 @@ export const translations = {
     "blog.readMore": "Читать далее",
     "blog.notFound": "Статья не найдена",
     "blog.backToBlog": "Назад к блогу",
+    "blog.aiSummary": "Краткий обзор",
+    "blog.summaryTitle": "ШИ-обзор статьи",
+    "blog.keyPoints": "Ключевые тезисы",
 
     // Home - How Roomie Works
     "home.howWorks.badge": "Процесс",
@@ -1699,6 +1705,9 @@ export const translations = {
     "blog.readMore": "Читати далі",
     "blog.notFound": "Статтю не знайдено",
     "blog.backToBlog": "Назад до блогу",
+    "blog.aiSummary": "Стислий огляд",
+    "blog.summaryTitle": "ШІ-огляд статті",
+    "blog.keyPoints": "Ключові тези",
 
     // Home - How Roomie Works
     "home.howWorks.badge": "Процес",
