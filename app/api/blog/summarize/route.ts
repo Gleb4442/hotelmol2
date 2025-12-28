@@ -14,11 +14,11 @@ export async function POST(req: Request) {
         }
 
         const response = await openai.chat.completions.create({
-            model: "gpt-4o",
+            model: "gpt-4o-mini",
             messages: [
                 {
                     role: "system",
-                    content: `You are a professional assistant for hoteliers. Provide a brief summary and 3-5 key points from the following article. The response must be in ${language === "ru" ? "Russian" : language === "uk" ? "Ukrainian" : "English"}.
+                    content: `You are a professional assistant for hoteliers. Provide a brief summary and 3-5 key points from the following article. The response must be in ${language === "ru" ? "Russian" : language === "ua" ? "Ukrainian" : "English"}.
           Format the output as follows:
           SUMMARY: [One paragraph summary]
           KEY_POINTS:
