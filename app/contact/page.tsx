@@ -178,7 +178,7 @@ export default function Contact() {
                                         </div>
                                         <div>
                                             <h3 className="font-medium mb-1">{t("contact.phoneLabel")}</h3>
-                                            <p className="text-muted-foreground"><a href="tel:+380931603830" className="hover:text-primary transition-colors">+380 93 160 38 30</a></p>
+                                            <p className="text-muted-foreground"><a href="tel:+380931603830" className="hover:text-primary transition-colors">+380 93 160 38 30</a> <span className="text-xs">(Для звонков по Украине)</span></p>
                                         </div>
                                     </div>
                                 </div>

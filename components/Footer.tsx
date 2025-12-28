@@ -41,9 +41,9 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Phone className="h-4 w-4" />
-                <a href="tel:+380931603830" className="hover:text-foreground">
-                  +380 93 160 38 30
-                </a>
+                <p className="text-sm text-muted-foreground">
+                  +380 93 160 38 30 <span className="text-xs">(\u0414\u043b\u044f \u0437\u0432\u043e\u043d\u043a\u043e\u0432 \u043f\u043e \u0423\u043a\u0440\u0430\u0438\u043d\u0435)</span>
+                </p>
               </div>
             </div>
           </div>
