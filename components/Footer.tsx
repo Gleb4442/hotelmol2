@@ -27,7 +27,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="mb-4">
-              <img src="/assets/hotelmol-logo.png" alt="HotelMol" className="h-[150px]" />
+              <img src="/assets/hotelmol-logo.png" alt="HotelMol" className="h-16 md:h-[150px]" />
             </div>
             <p className="text-sm text-muted-foreground mb-4">
               {t("footer.tagline")}

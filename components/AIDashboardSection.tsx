@@ -11,11 +11,11 @@ export default function AIDashboardSection() {
 
   return (
     <section
-      className="py-20 lg:py-28 bg-background"
+      className="py-16 md:py-20 lg:py-28 bg-background"
       data-testid="section-ai-dashboard"
     >
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ export default function AIDashboardSection() {
           >
             <BookingsWidget />
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +48,7 @@ export default function AIDashboardSection() {
           >
             <UpsellsWidget />
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ export default function AIDashboardSection() {
           </motion.div>
         </div>
 
-        <motion.p 
+        <motion.p
           className="text-center text-sm text-muted-foreground mt-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -104,7 +104,7 @@ function BookingsWidget() {
   const widgetRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(widgetRef, { once: true, amount: 0.3 });
   const { count: displayCount, startAnimation } = useCountAnimation(86, 2000);
-  
+
   const monthlyData = [
     { month: "Jan", height: 52 },
     { month: "Feb", height: 60 },
@@ -128,7 +128,7 @@ function BookingsWidget() {
         </div>
         <h3 className="text-lg font-semibold text-foreground">{t("home.aiDashboard.bookings.title")}</h3>
       </div>
-      
+
       <div className="flex-1 flex flex-col">
         <div className="text-center mb-6">
           <span className="text-5xl font-bold text-primary" data-testid="bookings-count">
@@ -136,7 +136,7 @@ function BookingsWidget() {
           </span>
           <p className="text-sm text-muted-foreground mt-1">{t("home.aiDashboard.bookings.thisMonth")}</p>
         </div>
-        
+
         <div className="flex items-end justify-between gap-2 h-28 mt-auto">
           {monthlyData.map((data, index) => (
             <div key={data.month} className="flex flex-col items-center flex-1">
@@ -145,10 +145,10 @@ function BookingsWidget() {
                   className="w-full bg-primary rounded-t-sm"
                   initial={{ height: 0 }}
                   animate={isInView ? { height: `${data.height}%` } : { height: 0 }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: 0.2 + index * 0.08, 
-                    ease: [0.25, 0.1, 0.25, 1] 
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.2 + index * 0.08,
+                    ease: [0.25, 0.1, 0.25, 1]
                   }}
                   data-testid={`bar-${data.month.toLowerCase()}`}
                 />
@@ -181,7 +181,7 @@ function UpsellsWidget() {
         </div>
         <h3 className="text-lg font-semibold text-foreground">{t("home.aiDashboard.upsells.title")}</h3>
       </div>
-      
+
       <div className="space-y-3 flex-1">
         {upsells.map((upsell, index) => (
           <motion.div
@@ -196,8 +196,8 @@ function UpsellsWidget() {
               <p className="text-foreground font-medium text-sm">
                 {t(`home.aiDashboard.upsells.${upsell.key}` as any)}
               </p>
-              <Badge 
-                variant="secondary" 
+              <Badge
+                variant="secondary"
                 className="text-xs mt-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
               >
                 {t("home.aiDashboard.upsells.status")}
@@ -209,7 +209,7 @@ function UpsellsWidget() {
           </motion.div>
         ))}
       </div>
-      
+
       <div className="mt-4 pt-4 border-t border-border">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
@@ -230,7 +230,7 @@ function ReviewsWidget() {
   const percentage = 92;
   const radius = 50;
   const circumference = 2 * Math.PI * radius;
-  
+
   const [displayCount, setDisplayCount] = useState(0);
   const [strokeDashoffset, setStrokeDashoffset] = useState(circumference);
   const animationRef = useRef<ReturnType<typeof animate> | null>(null);
@@ -239,7 +239,7 @@ function ReviewsWidget() {
   useEffect(() => {
     if (isInView && !hasStarted.current) {
       hasStarted.current = true;
-      
+
       animationRef.current = animate(0, percentage, {
         duration: 2.5,
         ease: [0.25, 0.1, 0.25, 1],
@@ -264,12 +264,12 @@ function ReviewsWidget() {
         </div>
         <h3 className="text-lg font-semibold text-foreground">{t("home.aiDashboard.reviews.title")}</h3>
       </div>
-      
+
       <div className="flex items-center justify-center flex-1 py-4">
         <div className="relative w-40 h-40">
-          <svg 
-            className="transform -rotate-90" 
-            width="160" 
+          <svg
+            className="transform -rotate-90"
+            width="160"
             height="160"
             viewBox="0 0 160 160"
             data-testid="reviews-progress-ring"
@@ -308,7 +308,7 @@ function ReviewsWidget() {
           </div>
         </div>
       </div>
-      
+
       <div className="flex justify-center gap-6 mt-4">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-primary" />

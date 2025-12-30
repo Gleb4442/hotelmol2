@@ -17,7 +17,7 @@ export default function Home() {
     const [demoModalOpen, setDemoModalOpen] = useState(false);
 
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col overflow-x-hidden">
             <SEO
                 title="AI-Powered Hotel Guest Communication"
                 description="Transform your hotel operations with Roomie, the AI assistant that handles guest communications 24/7 in 100+ languages. Boost efficiency and guest satisfaction."

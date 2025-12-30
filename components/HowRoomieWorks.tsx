@@ -52,7 +52,7 @@ export default function HowRoomieWorks() {
   }, []);
 
   return (
-    <section className="py-24 lg:py-40">
+    <section className="py-16 md:py-24 lg:py-40">
       <div className="container mx-auto px-4">
         <div className="text-center mb-20">
           <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">

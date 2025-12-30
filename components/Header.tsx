@@ -57,7 +57,7 @@ export default function Header({ onDemoClick }: HeaderProps = {}) {
       <div className="flex h-[90px] md:h-[100px] items-center justify-between px-6">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center" data-testid="link-home">
-            <img src="/assets/hotelmol-logo.png" alt="HotelMol" className="h-[195px]" />
+            <img src="/assets/hotelmol-logo.png" alt="HotelMol" className="h-12 md:h-[195px]" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
