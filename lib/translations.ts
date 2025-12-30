@@ -237,6 +237,7 @@ const translationsBase = {
     "blog.aiSummary": "Brief Summary",
     "blog.summaryTitle": "AI Article Overview",
     "blog.keyPoints": "Key Takeaways",
+    "blog.share": "Share",
 
     // Home - How Roomie Works
     "home.howWorks.badge": "The Process",
@@ -1078,6 +1079,7 @@ const translationsBase = {
     "blog.aiSummary": "Краткий обзор",
     "blog.summaryTitle": "ИИ-обзор статьи",
     "blog.keyPoints": "Ключевые тезисы",
+    "blog.share": "Поделиться",
 
     // Home - How Roomie Works
     "home.howWorks.badge": "Процесс",
@@ -1762,6 +1764,7 @@ const translationsBase = {
     "blog.aiSummary": "Стислий огляд",
     "blog.summaryTitle": "ШІ-огляд статті",
     "blog.keyPoints": "Ключові тези",
+    "blog.share": "Поділитись",
 
     // Home - How Roomie Works
     "home.howWorks.badge": "Процес",
@@ -2445,6 +2448,7 @@ const translationsBase = {
     "blog.aiSummary": "Brief Summary",
     "blog.summaryTitle": "AI Article Overview",
     "blog.keyPoints": "Key Takeaways",
+    "blog.share": "Share",
 
     // Home - How Roomie Works
     "home.howWorks.badge": "The Process",
