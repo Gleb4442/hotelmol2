@@ -10,6 +10,7 @@ import { useTranslation } from "@/lib/TranslationContext";
 import type { BlogPost } from "@/shared/schema";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import JsonLd from "@/components/JsonLd";
 
 export default function BlogPostClient({ post }: { post: BlogPost }) {
     const { t, language } = useTranslation();
@@ -79,10 +80,12 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
     });
 
     return (
-        <article className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-                <Button variant="ghost" className="mb-8" onClick={() => router.push('/blog')}>
-                    <ArrowLeft className="mr-2 h-4 w-4" />
+        <>
+            <JsonLd post={post} localizedPost={localizedPost} />
+            <article className="container mx-auto px-4">
+                <div className="max-w-3xl mx-auto">
+                    <Button variant="ghost" className="mb-8" onClick={() => router.push('/blog')}>
+                        <ArrowLeft className="mr-2 h-4 w-4" />
                     {t("blog.backToBlog")}
                 </Button>
 
@@ -172,5 +175,6 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
                 </footer>
             </div>
         </article>
+    </>
     );
 }
