@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, Tag, Sparkles, Loader2, CheckCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import ShareButton from "@/components/ShareButton";
 import { useTranslation } from "@/lib/TranslationContext";
 import type { BlogPost } from "@/shared/schema";
 import { useMutation } from "@tanstack/react-query";
@@ -118,6 +119,12 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
                             )}
                             {t("blog.aiSummary") || "Summarize with AI"}
                         </Button>
+
+                        <ShareButton
+                            title={localizedPost.title}
+                            text={localizedPost.seoDescription || ""}
+                            url={typeof window !== 'undefined' ? window.location.href : ''}
+                        />
 
                         {Array.isArray(post.tags) && post.tags.length > 0 ? (
                             <div className="flex items-center gap-2">
