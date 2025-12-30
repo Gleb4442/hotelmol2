@@ -98,6 +98,9 @@ export default function Header({ onDemoClick }: HeaderProps = {}) {
               <DropdownMenuItem onClick={() => setLanguage("ua" as Language)} data-testid="option-ua">
                 Українська (UA) {language === "ua" && "✓"}
               </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage("pl" as Language)} data-testid="option-pl">
+                Polski (PL) {language === "pl" && "✓"}
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
