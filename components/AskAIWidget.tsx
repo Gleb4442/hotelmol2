@@ -67,13 +67,13 @@ export default function AskAIWidget() {
                         </div>
 
                         <div className="p-4 border-t border-white/10 bg-white/20 backdrop-blur-md">
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 items-center">
                                 <Input
                                     placeholder="Message..."
-                                    className="flex-1 bg-white/40 dark:bg-black/20 border-white/20 focus-visible:ring-offset-0 focus-visible:ring-white/50 placeholder:text-muted-foreground/70"
+                                    className="flex-1 bg-white/60 dark:bg-black/40 border-white/30 focus-visible:ring-offset-0 focus-visible:ring-blue-500/50 placeholder:text-muted-foreground/80 shadow-inner"
                                 />
-                                <Button size="icon" className="bg-[#0752A0] hover:bg-[#064282] text-white shadow-lg">
-                                    <Send className="h-4 w-4" />
+                                <Button size="icon" className="h-10 w-10 rounded-xl bg-[#0752A0] hover:bg-[#064282] text-white shadow-lg transition-transform active:scale-95">
+                                    <Send className="h-5 w-5 ml-0.5" />
                                 </Button>
                             </div>
                         </div>
@@ -85,16 +85,16 @@ export default function AskAIWidget() {
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative flex items-center gap-3 pl-3 pr-8 py-3 bg-[#0752A0] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] border border-white/20 hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all duration-300"
+                className="group relative flex items-center gap-2 pl-2 pr-5 py-2 bg-[#0752A0] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] border border-white/20 hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all duration-300"
             >
                 {/* Content */}
-                <div className="relative z-10 flex items-center gap-4">
-                    <div className="relative w-14 h-14 rounded-full bg-white/10 flex items-center justify-center text-white overflow-hidden shadow-inner backdrop-blur-sm">
+                <div className="relative z-10 flex items-center gap-3">
+                    <div className="relative w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white overflow-hidden shadow-inner backdrop-blur-sm">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             xmlSpace="preserve"
-                            width="40"
-                            height="40"
+                            width="28"
+                            height="28"
                             version="1.1"
                             viewBox="0 0 203.18 203.18"
                             style={{
@@ -114,7 +114,7 @@ export default function AskAIWidget() {
                             </g>
                         </svg>
                     </div>
-                    <span className="font-semibold text-lg text-white tracking-wide">Спросить ИИ</span>
+                    <span className="font-semibold text-base text-white tracking-wide">Спросить ИИ</span>
                 </div>
             </motion.button>
         </div>
