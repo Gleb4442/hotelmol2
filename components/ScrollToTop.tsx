@@ -35,7 +35,7 @@ export default function ScrollToTop() {
           <button
             onClick={scrollToTop}
             data-testid="button-scroll-to-top-mobile"
-            className="md:hidden fixed left-4 bottom-8 z-40 p-2 rounded-full transition-all duration-300"
+            className="md:hidden fixed right-4 bottom-24 z-40 p-2 rounded-full transition-all duration-300"
             style={{ backgroundColor: "#0752A0" }}
             aria-label="Scroll to top"
           >

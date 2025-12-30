@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Globe, Menu, X } from "lucide-react";
+import { Globe, Menu } from "lucide-react";
 import { useTranslation } from "@/lib/TranslationContext";
 import type { Language } from "@/lib/translations";
 import {
@@ -13,13 +13,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 interface HeaderProps {
   onDemoClick?: () => void;
 }
 
 export default function Header({ onDemoClick }: HeaderProps = {}) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const { language, setLanguage, t } = useTranslation();
 
@@ -125,43 +125,42 @@ export default function Header({ onDemoClick }: HeaderProps = {}) {
             </a>
           </Button>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden w-16 h-16"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            data-testid="button-mobile-menu"
-          >
-            {mobileMenuOpen ? <X className="h-10 w-10 stroke-[3]" /> : <Menu className="h-10 w-10 stroke-[3]" />}
-          </Button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden w-16 h-16"
+                data-testid="button-mobile-menu"
+              >
+                <Menu className="h-10 w-10 stroke-[3]" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <nav className="flex flex-col gap-4 mt-8">
+                {navigation.map((item) => {
+                  const isActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`text-lg font-medium transition-colors hover:text-primary flex items-center gap-2 ${isActive ? "text-primary" : ""}`}
+                      data-testid={`mobile-link-${item.name.toLowerCase().replace(' ', '-')}`}
+                    >
+                      {item.name}
+                      {item.badge && (
+                        <span className="inline-block px-2 py-0.5 text-xs font-semibold text-white bg-gradient-to-r from-primary via-blue-600 to-primary bg-[length:200%_100%] animate-gradient rounded-full">
+                          {item.badge}
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
-
-      {mobileMenuOpen && (
-        <div className="border-t md:hidden rounded-b-2xl">
-          <nav className="flex flex-col gap-4 p-4">
-            {navigation.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-2 ${isActive ? "text-primary" : ""}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  data-testid={`mobile-link-${item.name.toLowerCase().replace(' ', '-')}`}
-                >
-                  {item.name}
-                  {item.badge && (
-                    <span className="inline-block px-2 py-0.5 text-xs font-semibold text-white bg-gradient-to-r from-primary via-blue-600 to-primary bg-[length:200%_100%] animate-gradient rounded-full">
-                      {item.badge}
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
-      )}
 
       <style>{`
         @keyframes gradient {
