@@ -118,8 +118,8 @@ export default function AskAIWidget() {
                         // Mobile: Full screen when open (top-0 bottom-0 left-0 right-0 w-full h-full).
                         className="pointer-events-auto relative w-full h-full md:w-[410px] md:h-full rounded-none md:rounded-2xl overflow-hidden flex flex-col origin-bottom-right border border-black/5 shadow-2xl backdrop-blur-3xl bg-white/70 dark:bg-black/70 ring-1 ring-black/5"
                     >
-                        {/* Chat Header - Responsive vertical padding: Desktop -7px (py-[12.5px]), Mobile -5px (py-[13.5px]) */}
-                        <div className="py-[13.5px] md:py-[12.5px] px-4 bg-white/10 border-b border-white/10 text-foreground flex justify-between items-center backdrop-blur-md shrink-0">
+                        {/* Chat Header - Extreme vertical reduction: Desktop total -7px (py-[9px]), Mobile total -5px (py-[11px]) relative to Phase 4 */}
+                        <div className="py-[11px] md:py-[9px] px-4 bg-white/10 border-b border-white/10 text-foreground flex justify-between items-center backdrop-blur-md shrink-0">
                             <div className="flex items-center gap-3">
                                 {/* UI Polish: Header icon reduced (w-16 h-16) */}
                                 <div className="w-16 h-16 flex items-center justify-center">
@@ -191,34 +191,26 @@ export default function AskAIWidget() {
                                 </div>
                             ))}
 
-                            {/* Typing Indicator - Shimmer Effect + Sequential Dots */}
+                            {/* Typing Indicator - 3 Sequential Jumping Dots */}
                             {isLoading && (
-                                <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm p-4 rounded-2xl rounded-tl-none max-w-[85%] w-fit self-start border border-white/10 flex items-center gap-2 overflow-hidden">
-                                    <div className="relative">
-                                        {/* Shimmering Text */}
-                                        <motion.span
-                                            className="text-sm font-medium bg-clip-text text-transparent bg-gradient-to-r from-muted-foreground via-foreground to-muted-foreground bg-[length:200%_100%]"
-                                            animate={{ backgroundPosition: ["100% 0", "-100% 0"] }}
-                                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                        >
-                                            {t("aiWidget.thinking") || "Agent is thinking"}
-                                        </motion.span>
-
-                                        {/* Sequential Dots */}
-                                        <span className="text-sm font-medium text-muted-foreground inline-flex w-4">
-                                            <motion.span
-                                                animate={{ opacity: [0, 1, 1, 0] }}
-                                                transition={{ duration: 1.5, repeat: Infinity, times: [0, 0.33, 0.66, 1] }}
-                                            >.</motion.span>
-                                            <motion.span
-                                                animate={{ opacity: [0, 0, 1, 0] }}
-                                                transition={{ duration: 1.5, repeat: Infinity, times: [0, 0.33, 0.66, 1] }}
-                                            >.</motion.span>
-                                            <motion.span
-                                                animate={{ opacity: [0, 0, 0, 1] }}
-                                                transition={{ duration: 1.5, repeat: Infinity, times: [0, 0.33, 0.66, 1] }}
-                                            >.</motion.span>
-                                        </span>
+                                <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm p-4 rounded-2xl rounded-tl-none max-w-[85%] w-fit self-start border border-white/10 flex items-center justify-center">
+                                    <div className="flex items-center gap-2 h-4 px-2">
+                                        {[0, 1, 2].map((i) => (
+                                            <motion.div
+                                                key={i}
+                                                className="w-2.5 h-2.5 bg-[#0752A0] dark:bg-white rounded-full"
+                                                animate={{
+                                                    y: [0, -12, 0],
+                                                    scale: [1, 1.2, 1]
+                                                }}
+                                                transition={{
+                                                    duration: 0.8,
+                                                    repeat: Infinity,
+                                                    delay: i * 0.15,
+                                                    ease: "easeInOut"
+                                                }}
+                                            />
+                                        ))}
                                     </div>
                                 </div>
                             )}
@@ -268,8 +260,8 @@ export default function AskAIWidget() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         // UI Polish: Trigger height +4px (h-[44px]), narrowed gap for text exactly by 3px (gap-1.5 -> gap-[3px])
-                        // Harmonious white glow: border-white/40 and shadow-lg
-                        className="pointer-events-auto absolute bottom-4 right-0 group hidden md:flex items-center gap-[3px] pl-1.5 pr-4 h-[44px] bg-[#0752A0] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.4)] border border-white/30 hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] transition-all duration-300"
+                        // Shifted 8px to the left (right-2)
+                        className="pointer-events-auto absolute bottom-4 right-2 group hidden md:flex items-center gap-[3px] pl-1.5 pr-4 h-[44px] bg-[#0752A0] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.4)] border border-white/30 hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] transition-all duration-300"
                     >
                         {/* Content */}
                         <div className="relative z-10 flex items-center gap-[3px]">

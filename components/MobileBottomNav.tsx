@@ -85,24 +85,25 @@ export default function MobileBottomNav() {
                                 initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                className="absolute bottom-16 left-1/2 -translate-x-1/2 w-48 bg-white/95 dark:bg-black/95 backdrop-blur-2xl rounded-2xl shadow-2xl border border-black/5 overflow-hidden p-2 z-[60]"
+                                // UI Polish: Opaque background, centered above, higher offset (bottom-24).
+                                className="absolute bottom-[200%] left-1/2 -translate-x-1/2 w-48 bg-white dark:bg-black rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] border border-black/10 overflow-hidden p-2 z-[60]"
                             >
                                 <a
                                     href="https://demo.hotelmol.com"
                                     target="_blank"
                                     onClick={() => setIsMenuOpen(false)}
-                                    // UI Refinement: Text only, centered, no extra icons
-                                    className="flex items-center justify-center w-full py-4 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors text-sm font-semibold"
+                                    // UI Refinement: Text only, centered, high contrast, opaque.
+                                    className="flex items-center justify-center w-full py-5 hover:bg-black/5 dark:hover:bg-white/5 rounded-2xl transition-colors text-lg font-bold text-[#0752A0] dark:text-[#a0c4ff]"
                                 >
                                     {t("button.tryDemo") || "Demo"}
                                 </a>
-                                <div className="h-px bg-black/5 dark:bg-white/5 mx-2" />
+                                <div className="h-px bg-black/5 dark:bg-white/5 mx-3" />
                                 <a
                                     href="https://pricing.hotelmol.com/#yearly"
                                     target="_blank"
                                     onClick={() => setIsMenuOpen(false)}
-                                    // UI Refinement: Text only, centered, no extra icons
-                                    className="flex items-center justify-center w-full py-4 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors text-sm font-semibold"
+                                    // UI Refinement: Text only, centered, high contrast, opaque.
+                                    className="flex items-center justify-center w-full py-5 hover:bg-black/5 dark:hover:bg-white/5 rounded-2xl transition-colors text-lg font-bold text-[#0752A0] dark:text-[#a0c4ff]"
                                 >
                                     {t("button.pricing") || "Pricing"}
                                 </a>
@@ -118,7 +119,8 @@ export default function MobileBottomNav() {
                     onClick={openAIChat}
                     className="flex-1 flex flex-col items-center justify-center gap-0.5 h-full text-[#0752A0] active:scale-95 transition-transform"
                 >
-                    <MessageCircle className="w-6 h-6" />
+                    {/* UI Polish: Mirrored icon (scale-x-[-1]) */}
+                    <MessageCircle className="w-6 h-6 scale-x-[-1]" />
                     <span className="text-[10px] font-medium uppercase tracking-tighter">AI</span>
                 </button>
             </div>
