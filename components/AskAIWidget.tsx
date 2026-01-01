@@ -191,7 +191,7 @@ export default function AskAIWidget() {
                                 </div>
                             ))}
 
-                            {/* Typing Indicator - 3 Sequential Jumping Dots */}
+                            {/* Typing Indicator - Smoother, Lower Jumping Dots */}
                             {isLoading && (
                                 <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm p-4 rounded-2xl rounded-tl-none max-w-[85%] w-fit self-start border border-white/10 flex items-center justify-center">
                                     <div className="flex items-center gap-2 h-4 px-2">
@@ -200,13 +200,13 @@ export default function AskAIWidget() {
                                                 key={i}
                                                 className="w-2.5 h-2.5 bg-[#0752A0] dark:bg-white rounded-full"
                                                 animate={{
-                                                    y: [0, -12, 0],
-                                                    scale: [1, 1.2, 1]
+                                                    y: [0, -5, 0],
+                                                    scale: [1, 1.15, 1]
                                                 }}
                                                 transition={{
-                                                    duration: 0.8,
+                                                    duration: 1.2,
                                                     repeat: Infinity,
-                                                    delay: i * 0.15,
+                                                    delay: i * 0.2,
                                                     ease: "easeInOut"
                                                 }}
                                             />

@@ -119,8 +119,8 @@ export default function MobileBottomNav() {
                     onClick={openAIChat}
                     className="flex-1 flex flex-col items-center justify-center gap-0.5 h-full text-[#0752A0] active:scale-95 transition-transform"
                 >
-                    {/* UI Polish: Mirrored icon (scale-x-[-1]) */}
-                    <MessageCircle className="w-6 h-6 scale-x-[-1]" />
+                    {/* UI Polish: Original orientation (reverted mirroring) */}
+                    <MessageCircle className="w-6 h-6" />
                     <span className="text-[10px] font-medium uppercase tracking-tighter">AI</span>
                 </button>
             </div>
