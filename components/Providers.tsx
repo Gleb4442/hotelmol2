@@ -7,7 +7,7 @@ import { TranslationProvider } from "@/lib/TranslationContext";
 import { CookieBannerProvider } from "@/lib/CookieBannerContext";
 import { Toaster } from "@/components/ui/toaster";
 import CookieBanner from "@/components/CookieBanner";
-import FloatingButtons from "@/components/FloatingButtons";
+import MobileBottomNav from "@/components/MobileBottomNav";
 import ScrollToTop from "@/components/ScrollToTop";
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -19,7 +19,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
                         {children}
                         <Toaster />
                         <CookieBanner />
-                        <FloatingButtons />
+                        <MobileBottomNav />
                         <ScrollToTop />
                     </TooltipProvider>
                 </TranslationProvider>

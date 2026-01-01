@@ -40,6 +40,13 @@ export default function AskAIWidget() {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, isLoading]);
 
+    // Listen for custom event to open chat (from mobile nav)
+    useEffect(() => {
+        const handleOpen = () => setIsOpen(true);
+        window.addEventListener("open-ai-chat", handleOpen);
+        return () => window.removeEventListener("open-ai-chat", handleOpen);
+    }, []);
+
     const handleSendMessage = async () => {
         if (!input.trim() || isLoading) return;
 
@@ -100,15 +107,16 @@ export default function AskAIWidget() {
     };
 
     return (
-        <div className="hidden md:flex fixed z-50 flex-col items-end gap-4 text-left pointer-events-none right-[10px] bottom-[10px] top-[10px]">
+        <div className="fixed z-[60] flex flex-col items-end gap-4 text-left pointer-events-none md:right-[10px] md:bottom-[10px] md:top-[10px] inset-0 md:inset-auto">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        // UI Polish: Maximize height (h-[calc(100vh-20px)]), increased width (410px), margin logic handled by parent container spacing
-                        className="pointer-events-auto relative w-[410px] h-full rounded-2xl overflow-hidden flex flex-col origin-bottom-right border border-black/5 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] backdrop-blur-3xl bg-white/70 dark:bg-black/70 ring-1 ring-black/5"
+                        // UI Polish: Maximize height (h-full), increased width (410px) on desktop. 
+                        // Mobile: Full screen when open (top-0 bottom-0 left-0 right-0 w-full h-full).
+                        className="pointer-events-auto relative w-full h-full md:w-[410px] md:h-full rounded-none md:rounded-2xl overflow-hidden flex flex-col origin-bottom-right border border-black/5 shadow-2xl backdrop-blur-3xl bg-white/70 dark:bg-black/70 ring-1 ring-black/5"
                     >
                         {/* Chat Header */}
                         <div className="p-4 bg-white/10 border-b border-white/10 text-foreground flex justify-between items-center backdrop-blur-md shrink-0">
@@ -156,8 +164,8 @@ export default function AskAIWidget() {
                         {/* Chat Messages Area */}
                         <div className="flex-1 p-4 overflow-y-auto space-y-4">
                             {/* Welcome Message */}
-                            {/* UI Polish: auto-width bubble (w-fit) */}
-                            <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm p-4 rounded-2xl rounded-tl-none max-w-[85%] w-fit text-base shadow-sm border border-white/10 self-start">
+                            {/* UI Polish: auto-width bubble (w-fit), prominent shadows */}
+                            <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm p-4 rounded-2xl rounded-tl-none max-w-[85%] w-fit text-base shadow-lg border border-white/10 self-start">
                                 {t("aiWidget.welcome") || "Hello! How can I help you today?"}
                             </div>
 
@@ -165,8 +173,8 @@ export default function AskAIWidget() {
                             {messages.map((msg, idx) => (
                                 <div
                                     key={idx}
-                                    // UI Polish: auto-width bubble (w-fit)
-                                    className={`p-4 rounded-2xl text-base shadow-sm border border-white/10 max-w-[85%] w-fit ${msg.role === 'user'
+                                    // UI Polish: auto-width bubble (w-fit), prominent shadows
+                                    className={`p-4 rounded-2xl text-base shadow-lg border border-white/10 max-w-[85%] w-fit ${msg.role === 'user'
                                         ? 'bg-[#0752A0] text-white rounded-tr-none ml-auto'
                                         : 'bg-white/60 dark:bg-black/40 backdrop-blur-sm rounded-tl-none self-start text-foreground'
                                         }`}
@@ -206,7 +214,8 @@ export default function AskAIWidget() {
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={handleKeyDown}
                                     placeholder={t("aiWidget.inputPlaceholder") || "Type a message..."}
-                                    className="w-full pr-12 py-6 bg-white/60 dark:bg-black/40 border-white/30 focus-visible:ring-offset-0 focus-visible:ring-blue-500/50 placeholder:text-muted-foreground/80 shadow-inner rounded-full"
+                                    // UI Polish: Color #20629B and thicker ring (ring-2 -> ring-[4px])
+                                    className="w-full pr-12 py-6 bg-white/60 dark:bg-black/40 border-white/30 focus-visible:ring-offset-0 focus-visible:ring-[#20629B] focus-visible:ring-[4px] placeholder:text-muted-foreground/80 shadow-inner rounded-full"
                                     disabled={isLoading}
                                 />
                                 <div className="absolute right-2 top-1/2 -translate-y-1/2">
@@ -227,7 +236,7 @@ export default function AskAIWidget() {
                 )}
             </AnimatePresence>
 
-            {/* UI Polish: Hide trigger button when isOpen is true */}
+            {/* UI Polish: Hide trigger button when isOpen is true. Desktop ONLY trigger. */}
             <AnimatePresence>
                 {!isOpen && (
                     <motion.button
@@ -238,7 +247,7 @@ export default function AskAIWidget() {
                         onClick={() => setIsOpen(true)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="pointer-events-auto absolute bottom-4 right-0 group flex items-center gap-2 pl-2 pr-3 py-1.5 bg-[#0752A0] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] border border-white/20 hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all duration-300"
+                        className="pointer-events-auto absolute bottom-4 right-0 group hidden md:flex items-center gap-2 pl-2 pr-3 py-1.5 bg-[#0752A0] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] border border-white/20 hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all duration-300"
                     >
                         {/* Content */}
                         <div className="relative z-10 flex items-center gap-3">
