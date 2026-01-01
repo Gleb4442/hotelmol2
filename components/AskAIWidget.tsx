@@ -121,8 +121,8 @@ export default function AskAIWidget() {
                         {/* Chat Header */}
                         <div className="p-4 bg-white/10 border-b border-white/10 text-foreground flex justify-between items-center backdrop-blur-md shrink-0">
                             <div className="flex items-center gap-3">
-                                {/* UI Polish: Header icon 2x size again (w-24 h-24) */}
-                                <div className="w-24 h-24 flex items-center justify-center">
+                                {/* UI Polish: Header icon reduced (w-16 h-16) */}
+                                <div className="w-16 h-16 flex items-center justify-center">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         xmlSpace="preserve"
@@ -214,8 +214,8 @@ export default function AskAIWidget() {
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={handleKeyDown}
                                     placeholder={t("aiWidget.inputPlaceholder") || "Type a message..."}
-                                    // UI Polish: Color #20629B and thicker ring (ring-2 -> ring-[4px])
-                                    className="w-full pr-12 py-6 bg-white/60 dark:bg-black/40 border-white/30 focus-visible:ring-offset-0 focus-visible:ring-[#20629B] focus-visible:ring-[4px] placeholder:text-muted-foreground/80 shadow-inner rounded-full"
+                                    // UI Polish: Color #20629B and thinner ring (ring-[4px] -> ring-[2.5px])
+                                    className="w-full pr-12 py-6 bg-white/60 dark:bg-black/40 border-white/30 focus-visible:ring-offset-0 focus-visible:ring-[#20629B] focus-visible:ring-[2.5px] placeholder:text-muted-foreground/80 shadow-inner rounded-full"
                                     disabled={isLoading}
                                 />
                                 <div className="absolute right-2 top-1/2 -translate-y-1/2">
@@ -247,15 +247,16 @@ export default function AskAIWidget() {
                         onClick={() => setIsOpen(true)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="pointer-events-auto absolute bottom-4 right-0 group hidden md:flex items-center gap-2 pl-2 pr-3 py-1.5 bg-[#0752A0] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] border border-white/20 hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all duration-300"
+                        // UI Polish: Compact trigger (h-10 instead of default, py-1, tighter padding). Narrower width.
+                        className="pointer-events-auto absolute bottom-4 right-0 group hidden md:flex items-center gap-1.5 pl-1.5 pr-3 h-10 bg-[#0752A0] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.3)] border border-white/20 hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all duration-300"
                     >
                         {/* Content */}
-                        <div className="relative z-10 flex items-center gap-3">
+                        <div className="relative z-10 flex items-center gap-1.5">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 xmlSpace="preserve"
-                                width="72"
-                                height="72"
+                                width="44"
+                                height="44"
                                 version="1.1"
                                 viewBox="0 0 203.18 203.18"
                                 style={{
@@ -282,7 +283,7 @@ export default function AskAIWidget() {
                                     </g>
                                 </g>
                             </svg>
-                            <span className="font-semibold text-lg text-white tracking-wide whitespace-nowrap">{t("aiWidget.button") || "Ask AI"}</span>
+                            <span className="font-semibold text-sm text-white tracking-wide whitespace-nowrap">{t("aiWidget.button") || "Ask AI"}</span>
                         </div>
                     </motion.button>
                 )}

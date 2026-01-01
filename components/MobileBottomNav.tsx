@@ -54,7 +54,8 @@ export default function MobileBottomNav() {
 
     return (
         <div className="md:hidden fixed bottom-2 left-2 right-2 z-50 pointer-events-none">
-            <div className="relative w-full h-14 bg-white/80 dark:bg-black/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-black/5 flex items-center justify-between px-2 pointer-events-auto">
+            {/* UI Polish: Removed border and dividers for a cleaner look. Shadow provides separation. bg opacity increased. */}
+            <div className="relative w-full h-14 bg-white/90 dark:bg-black/95 backdrop-blur-2xl rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-between px-2 pointer-events-auto">
 
                 {/* AI Assistant Button */}
                 <button
@@ -65,8 +66,7 @@ export default function MobileBottomNav() {
                     <span className="text-[10px] font-medium uppercase tracking-tighter">AI</span>
                 </button>
 
-                {/* Vertical Divider */}
-                <div className="w-px h-8 bg-black/5 dark:bg-white/5" />
+                {/* Vertical Divider Removed */}
 
                 {/* Menu Button (Demo/Pricing) */}
                 <div className="relative flex-1 h-full">
@@ -91,28 +91,27 @@ export default function MobileBottomNav() {
                                     href="https://demo.hotelmol.com"
                                     target="_blank"
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-between w-full p-3 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors text-sm font-medium"
+                                    // UI Refinement: Text only, centered, no extra icons
+                                    className="flex items-center justify-center w-full py-4 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors text-sm font-semibold"
                                 >
-                                    <span>{t("button.tryDemo") || "Demo"}</span>
-                                    <ExternalLink className="w-4 h-4 opacity-50" />
+                                    {t("button.tryDemo") || "Demo"}
                                 </a>
-                                <div className="h-px bg-black/5 dark:bg-white/5 my-1" />
+                                <div className="h-px bg-black/5 dark:bg-white/5 mx-2" />
                                 <a
                                     href="https://pricing.hotelmol.com/#yearly"
                                     target="_blank"
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-between w-full p-3 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors text-sm font-medium"
+                                    // UI Refinement: Text only, centered, no extra icons
+                                    className="flex items-center justify-center w-full py-4 hover:bg-black/5 dark:hover:bg-white/5 rounded-xl transition-colors text-sm font-semibold"
                                 >
-                                    <span>{t("button.pricing") || "Pricing"}</span>
-                                    <ExternalLink className="w-4 h-4 opacity-50" />
+                                    {t("button.pricing") || "Pricing"}
                                 </a>
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </div>
 
-                {/* Vertical Divider */}
-                <div className="w-px h-8 bg-black/5 dark:bg-white/5" />
+                {/* Vertical Divider Removed */}
 
                 {/* Language Switcher Button */}
                 <button
