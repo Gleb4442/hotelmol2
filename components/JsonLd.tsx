@@ -1,6 +1,10 @@
 "use client";
 
-import type { BlogPost } from '@/shared/schema';
+import type { BlogPost, authors } from '@/shared/schema';
+import Script from 'next/script';
+
+type Author = typeof authors.$inferSelect;
+type PostWithAuthor = BlogPost & { author: Author | null };
 
 type LocalizedPost = {
   title: string;
@@ -10,7 +14,7 @@ type LocalizedPost = {
 };
 
 type JsonLdProps = {
-  post: BlogPost;
+  post: PostWithAuthor;
   localizedPost: LocalizedPost;
 };
 
@@ -26,8 +30,9 @@ const JsonLd = ({ post, localizedPost }: JsonLdProps) => {
     description: localizedPost.seoDescription || '',
     image: post.featuredImage || 'https://hotelmol.com/default-og-image.png', // Fallback image
     author: {
-      '@type': 'Organization',
-      name: 'Hotelmol',
+      '@type': 'Person',
+      name: post.author?.name,
+      image: post.author?.photo_url,
     },
     publisher: {
       '@type': 'Organization',

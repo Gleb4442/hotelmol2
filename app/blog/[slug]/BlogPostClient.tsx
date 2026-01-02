@@ -8,12 +8,17 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import ShareButton from "@/components/ShareButton";
 import { useTranslation } from "@/lib/TranslationContext";
-import type { BlogPost } from "@/shared/schema";
+import type { BlogPost, authors } from "@/shared/schema";
+import AuthorInfo from "@/components/AuthorInfo";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import JsonLd from "@/components/JsonLd";
 
-export default function BlogPostClient({ post }: { post: BlogPost }) {
+type Author = typeof authors.$inferSelect;
+type PostWithAuthor = BlogPost & { author: Author | null };
+
+
+export default function BlogPostClient({ post }: { post: PostWithAuthor }) {
     const { t, language } = useTranslation();
     const router = useRouter();
     const [summaryData, setSummaryData] = useState<{ summary: string; keyPoints: string[] } | null>(null);
@@ -103,6 +108,8 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6">
                         {localizedPost.title}
                     </h1>
+
+                    {post.author && <AuthorInfo author={post.author} />}
 
                     <div className="flex flex-wrap items-center gap-4">
                         <Button
