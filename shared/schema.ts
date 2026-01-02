@@ -165,6 +165,14 @@ export type Waitlist = z.infer<typeof waitlistSchema>;
 
 // Blog Posts table for SEO-optimized blog
 // Blog Posts table aligned with existing DB structure
+export const authors = pgTable("authors", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: varchar("name").notNull(),
+  photo_url: text("photo_url"),
+  bio: text("bio"),
+  location: varchar("location", { length: 100 }),
+});
+
 export const blogPosts = pgTable("blog_posts", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   title: varchar("title").notNull(),
@@ -189,7 +197,7 @@ export const blogPosts = pgTable("blog_posts", {
   seoTitlePl: text("seo_title_pl"),
   seoDescriptionPl: text("seo_description_pl"),
 
-  authorId: varchar("author_id"),
+  authorId: varchar("author_id").references(() => authors.id),
   status: varchar("status").default('draft'), // 'published' or 'draft'
   featuredImage: text("featured_image"),
   tags: jsonb("tags").default([]),
@@ -203,6 +211,19 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
   createdAt: true,
   updatedAt: true,
 });
+
+import { relations } from "drizzle-orm";
+
+export const authorRelations = relations(authors, ({ many }) => ({
+  posts: many(blogPosts),
+}));
+
+export const blogPostRelations = relations(blogPosts, ({ one }) => ({
+  author: one(authors, {
+    fields: [blogPosts.authorId],
+    references: [authors.id],
+  }),
+}));
 
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;

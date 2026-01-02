@@ -18,13 +18,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const slug = decodeURIComponent(encodedSlug);
     const post = await db.query.blogPosts.findFirst({
         where: (posts: any, { eq }: any) => eq(posts.slug, slug),
+        with: {
+            author: true,
+        },
     });
     if (!post) return { title: "Post Not Found" };
 
-    return {
+    const metadata: any = {
         title: `${post.seoTitle || post.title} - Hotelmol Blog`,
         description: post.seoDescription || post.description || "",
     };
+
+    if (post.author) {
+        metadata.authors = [{ name: post.author.name }];
+    }
+
+    return metadata;
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -32,6 +41,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     const slug = decodeURIComponent(encodedSlug);
     const post = await db.query.blogPosts.findFirst({
         where: (posts: any, { eq }: any) => eq(posts.slug, slug),
+        with: {
+            author: true,
+        },
     });
 
     if (!post) {
