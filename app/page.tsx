@@ -11,7 +11,6 @@ import ROIEstimate from "@/components/ROIEstimate";
 import PresentationSection from "@/components/PresentationSection";
 import Footer from "@/components/Footer";
 import DemoRequestModal from "@/components/DemoRequestModal";
-import AskAIWidget from "@/components/AskAIWidget";
 import SEO, { organizationSchema } from "@/components/SEO";
 
 export default function Home() {
@@ -36,7 +35,6 @@ export default function Home() {
             </main>
             <Footer />
             <DemoRequestModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
-            <AskAIWidget />
         </div>
     );
 }

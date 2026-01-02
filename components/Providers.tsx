@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/toaster";
 import CookieBanner from "@/components/CookieBanner";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import ScrollToTop from "@/components/ScrollToTop";
+import AskAIWidget from "@/components/AskAIWidget";
 
 export function Providers({ children }: { children: React.ReactNode }) {
     return (
@@ -20,6 +21,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
                         <Toaster />
                         <CookieBanner />
                         <MobileBottomNav />
+                        <AskAIWidget />
                         <ScrollToTop />
                     </TooltipProvider>
                 </TranslationProvider>
