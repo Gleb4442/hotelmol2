@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 // Changed icons: ChevronDown for minimize, ArrowUp for send
 import { ChevronDown, ArrowUp } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTranslation } from "@/lib/TranslationContext";
@@ -18,6 +19,7 @@ interface Message {
 
 export default function AskAIWidget() {
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname();
     const { t } = useTranslation();
     const [sessionId, setSessionId] = useState<string>("");
     const [messages, setMessages] = useState<Message[]>([]);
@@ -53,6 +55,11 @@ export default function AskAIWidget() {
         window.addEventListener("open-ai-chat", handleOpen);
         return () => window.removeEventListener("open-ai-chat", handleOpen);
     }, []);
+
+    // Visibility logic: hide on blog and contact pages
+    const isHiddenPath = pathname.startsWith("/blog") || pathname === "/contact";
+
+    if (isHiddenPath) return null;
 
     const handleSendMessage = async () => {
         if (!input.trim() || isLoading) return;

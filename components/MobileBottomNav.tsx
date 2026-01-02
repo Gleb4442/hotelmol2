@@ -14,8 +14,8 @@ export default function MobileBottomNav() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
 
-    // Visibility logic: hide on blog pages
-    const isHiddenPath = pathname.startsWith("/blog");
+    // Visibility logic: hide on blog and contact pages
+    const isHiddenPath = pathname.startsWith("/blog") || pathname === "/contact";
 
     useEffect(() => {
         // Show after cookie consent or initial load
@@ -79,33 +79,35 @@ export default function MobileBottomNav() {
                     </button>
                 </div>
 
-                {/* Dropup Menu - Positioned relative to the whole bar for perfect centering */}
+                {/* Dropup Menu - Perfectly Centered relative to the whole bar */}
                 <AnimatePresence>
                     {isMenuOpen && (
                         <motion.div
                             initial={{ opacity: 0, y: 10, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                            // UI Polish: Fixed width, perfectly centered on the bar, opaque.
-                            className="absolute bottom-16 left-1/2 -translate-x-1/2 w-48 bg-white dark:bg-black rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.2)] border border-black/10 overflow-hidden p-2 z-[60]"
+                            // UI Polish: Opaque background, centered perfectly across the viewport width via parent bar.
+                            className="absolute bottom-[200%] left-1/2 -translate-x-1/2 w-[85vw] max-w-sm bg-white dark:bg-black rounded-3xl shadow-[0_10px_50px_rgba(0,0,0,0.3)] border border-black/10 overflow-hidden p-3 z-[60]"
                         >
-                            <a
-                                href="https://demo.hotelmol.com"
-                                target="_blank"
-                                onClick={() => setIsMenuOpen(false)}
-                                className="flex items-center justify-center w-full py-5 hover:bg-black/5 dark:hover:bg-white/5 rounded-2xl transition-colors text-lg font-bold text-[#0752A0] dark:text-[#a0c4ff]"
-                            >
-                                {t("button.tryDemo") || "Demo"}
-                            </a>
-                            <div className="h-px bg-black/5 dark:bg-white/5 mx-3" />
-                            <a
-                                href="https://pricing.hotelmol.com/#yearly"
-                                target="_blank"
-                                onClick={() => setIsMenuOpen(false)}
-                                className="flex items-center justify-center w-full py-5 hover:bg-black/5 dark:hover:bg-white/5 rounded-2xl transition-colors text-lg font-bold text-[#0752A0] dark:text-[#a0c4ff]"
-                            >
-                                {t("button.pricing") || "Pricing"}
-                            </a>
+                            <div className="flex flex-col gap-1">
+                                <a
+                                    href="https://demo.hotelmol.com"
+                                    target="_blank"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="flex items-center justify-center w-full py-5 hover:bg-black/5 dark:hover:bg-white/5 rounded-2xl transition-colors text-xl font-bold text-[#0752A0] dark:text-[#a0c4ff]"
+                                >
+                                    {t("button.tryDemo") || "Demo"}
+                                </a>
+                                <div className="h-px bg-black/5 dark:bg-white/5 mx-6" />
+                                <a
+                                    href="https://pricing.hotelmol.com/#yearly"
+                                    target="_blank"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="flex items-center justify-center w-full py-5 hover:bg-black/5 dark:hover:bg-white/5 rounded-2xl transition-colors text-xl font-bold text-[#0752A0] dark:text-[#a0c4ff]"
+                                >
+                                    {t("button.pricing") || "Pricing"}
+                                </a>
+                            </div>
                         </motion.div>
                     )}
                 </AnimatePresence>
