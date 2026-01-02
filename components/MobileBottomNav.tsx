@@ -87,7 +87,8 @@ export default function MobileBottomNav() {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 10, scale: 0.95 }}
                             // UI Polish: Perfectly centered horizontally, stable offset above the nav bar.
-                            className="absolute bottom-[76px] left-1/2 -translate-x-1/2 w-[90vw] max-w-[280px] bg-white dark:bg-black rounded-3xl shadow-[0_10px_50px_rgba(0,0,0,0.4)] border border-black/10 overflow-hidden p-3 z-[60]"
+                            // Shifting 55px to the left as requested.
+                            className="absolute bottom-[76px] left-1/2 -translate-x-1/2 -ml-[55px] w-[90vw] max-w-[280px] bg-white dark:bg-black rounded-3xl shadow-[0_10px_50px_rgba(0,0,0,0.4)] border border-black/10 overflow-hidden p-3 z-[60]"
                         >
                             <div className="flex flex-col gap-1">
                                 <a

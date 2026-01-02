@@ -106,6 +106,9 @@ const translationsBase = {
     "consultation.submitting": "Sending...",
     "consultation.successTitle": "Thank you!",
     "consultation.successMessage": "We'll contact you within 24 hours.",
+    "consultation.getConsultation": "Get Free Consultation",
+    "consultation.getConsultationSubsc": "Get a free consultation from our experts",
+
 
 
     // Demo Modal
@@ -953,6 +956,9 @@ const translationsBase = {
     "consultation.submitting": "Отправка...",
     "consultation.successTitle": "Спасибо!",
     "consultation.successMessage": "Мы свяжемся с вами в течение 24 часов.",
+    "consultation.getConsultation": "Получить бесплатную консультацию",
+    "consultation.getConsultationSubsc": "Получите бесплатную консультацию наших экспертов",
+
 
 
     // Demo Modal
@@ -1515,6 +1521,8 @@ const translationsBase = {
     "dpa.section10.text": "hotelmol предоставляет Контролеру информацию, необходимую для демонстрации соблюдения, включая аудиторские отчеты SOC 2 Type II и документацию о соответствии GDPR.",
     "dpa.contact": "Вопросы об этом DPA? Свяжитесь с нами: hello@hotelmind.ai",
 
+
+
     // Cookie Banner
     "cookie.banner.title": "Мы используем файлы cookie",
     "cookie.banner.description": "Мы используем файлы cookie для улучшения вашего опыта на нашем веб-сайте. Нажимая «Принять все», вы соглашаетесь на использование ВСЕХ файлов cookie.",
@@ -1643,6 +1651,9 @@ const translationsBase = {
     "consultation.submitting": "Відправка...",
     "consultation.successTitle": "Дякуємо!",
     "consultation.successMessage": "Ми зв'яжемося з вами протягом 24 годин.",
+    "consultation.getConsultation": "Отримати безкоштовну консультацію",
+    "consultation.getConsultationSubsc": "Отримайте безкоштовну консультацію наших експертів",
+
 
 
     // Demo Modal
@@ -2228,6 +2239,7 @@ const translationsBase = {
     "notFound.solutions": "Переглянути рішення",
   },
   pl: {
+
     // Header
     "nav.roomie": "Roomie",
     "nav.solutions": "Rozwiązania",
