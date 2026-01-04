@@ -8,7 +8,7 @@ export type Language = "en" | "ru" | "ua" | "pl";
 interface TranslationContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: TranslationKey) => string;
+  t: (key: TranslationKey) => any;
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
@@ -32,7 +32,7 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const t = (key: TranslationKey): string => {
+  const t = (key: TranslationKey): any => {
     const translation = translations[language]?.[key] || translations["en"]?.[key] || key;
     return translation;
   };

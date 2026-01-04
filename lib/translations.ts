@@ -884,7 +884,7 @@ const translationsBase = {
     "home.hero.titleAccent": "",
     "home.hero.typewriterKeys": [
       "доводит до бронирования",
-      "увеличивает средний чек",      "продает ваши доп услуги",
+      "увеличивает средний чек", "продает ваши доп услуги",
       "берет рутину на себя"
     ],
     "home.hero.subtitle": "Люди для людей, для остального есть Roomie AI",
@@ -3117,4 +3117,4 @@ const translationsBase = {
 
 export type TranslationKey = keyof typeof translationsBase.en;
 
-export const translations: Record<Language, Partial<Record<TranslationKey, string>>> = translationsBase;
+export const translations: Record<Language, Partial<Record<TranslationKey, string | readonly string[]>>> = translationsBase;
