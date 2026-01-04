@@ -51,19 +51,21 @@ export default function Header({ onDemoClick }: HeaderProps = {}) {
     <header className="fixed top-0 left-0 right-0 z-50" style={{
       width: "calc(100% - 2rem)",
       maxWidth: "1280px",
-      margin: "1rem auto",
+      margin: "0 auto",
+      marginTop: "clamp(0px, 1rem, 1rem)",
+      top: "0",
       left: "50%",
       transform: "translateX(-50%)",
-      borderRadius: "20px",
+      borderRadius: "0 0 20px 20px",
       backgroundColor: "rgba(255, 255, 255, 0.95)",
       backdropFilter: "blur(12px)",
       WebkitBackdropFilter: "blur(12px)",
       boxShadow: "0 8px 32px rgba(7, 82, 160, 0.12)"
     }}>
-      <div className="flex h-[70px] md:h-[100px] items-center justify-between px-6">
+      <div className="flex h-[70px] md:h-[90px] items-center justify-between px-6">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center" data-testid="link-home">
-            <img src="/assets/hotelmol-logo.png" alt="HotelMol" className="h-[195px] mt-2 md:mt-1" />
+            <img src="/assets/hotelmol-logo.png" alt="HotelMol" className="h-[180px] md:h-[195px] mt-2 md:mt-1" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">

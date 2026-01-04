@@ -1,13 +1,63 @@
-"use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { useTranslation } from "@/lib/TranslationContext";
 import DemoRequestModal from "./DemoRequestModal";
+import { translations } from "@/lib/translations";
 
 export default function Hero() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+
+  const typewriterKeys = (translations[language] as any)?.["home.hero.typewriterKeys"] ||
+    (translations["en"] as any)?.["home.hero.typewriterKeys"] || [
+      "доводит до бронирования",
+      "увеличивает средний чек",
+      "продает ваши доп услуги",
+      "берет рутину на себя"
+    ];
+
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [speed, setSpeed] = useState(150);
+
+  useEffect(() => {
+    const handleType = () => {
+      const currentWord = typewriterKeys[wordIndex % typewriterKeys.length];
+      const isFinishing = !isDeleting && displayText === currentWord;
+      const isStarting = isDeleting && displayText === "";
+
+      if (isFinishing) {
+        setTimeout(() => setIsDeleting(true), 2000);
+        return;
+      }
+
+      if (isStarting) {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % typewriterKeys.length);
+        return;
+      }
+
+      const nextText = isDeleting
+        ? currentWord.substring(0, displayText.length - 1)
+        : currentWord.substring(0, displayText.length + 1);
+
+      setDisplayText(nextText);
+
+      // Human-like speed logic
+      if (isDeleting) {
+        // Deleting speed: variable but generally faster and snappy
+        setSpeed(50 + Math.random() * 50);
+      } else {
+        // Typing speed: more variable to feel human
+        setSpeed(100 + Math.random() * 150);
+      }
+    };
+
+    const timer = setTimeout(handleType, speed);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, wordIndex, typewriterKeys, speed]);
 
   return (
     <>
@@ -18,11 +68,12 @@ export default function Hero() {
           <div className="max-w-5xl mx-auto text-center">
             <h1 className="font-serif text-[2.75rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter sm:tracking-tight text-white mb-6 leading-tight pl-[3px] sm:pl-0" style={{ marginLeft: "-8px" }}>
               <span className="inline-block ml-[-7px] sm:ml-[-10px]">
-                {t("home.hero.title")}
+                {t("home.hero.title")}&nbsp;
               </span>
-              <br />
-              <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                {t("home.hero.titleAccent")}
+              <br className="sm:hidden" />
+              <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent inline-flex items-center">
+                {displayText}
+                <span className="inline-block w-[3px] h-[0.9em] bg-white ml-2 animate-pulse" style={{ verticalAlign: 'middle' }} />
               </span>
             </h1>
 

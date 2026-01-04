@@ -22,8 +22,14 @@ const translationsBase = {
 
     // Home Hero
     "home.hero.badge": "Trusted by 500+ hotels worldwide",
-    "home.hero.title": "AI That Transforms",
-    "home.hero.titleAccent": "Guest Experience",
+    "home.hero.title": "AI that",
+    "home.hero.titleAccent": "",
+    "home.hero.typewriterKeys": [
+      "leads to booking",
+      "increases average check",
+      "sells your extra services",
+      "takes the routine on itself"
+    ],
     "home.hero.subtitle": "People for people, for everything else there's Roomie AI",
     "home.hero.watchDemo": "Watch Demo",
 
@@ -874,8 +880,13 @@ const translationsBase = {
 
     // Home Hero
     "home.hero.badge": "Нам доверяют более 500 отелей по всему миру",
-    "home.hero.title": "ИИ, который трансформирует",
-    "home.hero.titleAccent": "опыт гостей",
+    "home.hero.title": "ИИ, который",
+    "home.hero.titleAccent": "",
+    "home.hero.typewriterKeys": [
+      "доводит до бронирования",
+      "увеличивает средний чек",      "продает ваши доп услуги",
+      "берет рутину на себя"
+    ],
     "home.hero.subtitle": "Люди для людей, для остального есть Roomie AI",
     "home.hero.watchDemo": "Смотреть демо",
 
@@ -1571,8 +1582,14 @@ const translationsBase = {
 
     // Home Hero
     "home.hero.badge": "Нам довіряють понад 500 готелів по всьому світу",
-    "home.hero.title": "ШІ, який трансформує",
-    "home.hero.titleAccent": "досвід гостей",
+    "home.hero.title": "ШІ, який",
+    "home.hero.titleAccent": "",
+    "home.hero.typewriterKeys": [
+      "доводить до бронювання",
+      "збільшує середній чек",
+      "продає ваші доп послуги",
+      "бере рутину на себе"
+    ],
     "home.hero.subtitle": "Люди для людей, для всього іншого є Roomie AI",
     "home.hero.watchDemo": "Дивитися демо",
 
@@ -2262,9 +2279,14 @@ const translationsBase = {
 
     // Home Hero
     "home.hero.badge": "Trusted by 500+ hotels worldwide",
-    "home.hero.title": "AI That Transforms",
-    "home.hero.titleAccent": "Guest Experience",
-    "home.hero.subtitle": "People for people, for everything else there's Roomie AI",
+    "home.hero.title": "AI that",
+    "home.hero.titleAccent": "",
+    "home.hero.typewriterKeys": [
+      "leads to booking",
+      "increases average check",
+      "sells your extra services",
+      "takes the routine on itself"
+    ],
     "home.hero.watchDemo": "Watch Demo",
 
     // AI Dashboard Section
