@@ -171,6 +171,8 @@ export const authors = pgTable("authors", {
   photo_url: text("photo_url"),
   bio: text("bio"),
   location: varchar("location", { length: 100 }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 export const blogPosts = pgTable("blog_posts", {
@@ -178,6 +180,11 @@ export const blogPosts = pgTable("blog_posts", {
   title: varchar("title").notNull(),
   slug: varchar("slug").notNull().unique(),
   content: text("content").notNull(),
+
+  // Existing columns in DB
+  category: text("category"),
+  excerpt: text("excerpt"),
+  keywords: text("keywords"),
 
   // Переводы (необязательные)
   titleRu: text("title_ru"),
