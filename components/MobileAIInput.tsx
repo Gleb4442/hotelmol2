@@ -141,8 +141,8 @@ export default function MobileAIInput() {
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 xmlSpace="preserve"
-                                width="28"
-                                height="28"
+                                width="31"
+                                height="31"
                                 version="1.1"
                                 viewBox="0 0 203.18 203.18"
                                 style={{
@@ -174,7 +174,7 @@ export default function MobileAIInput() {
             </div>
 
             {/* Input Field */}
-            <div className="pointer-events-auto flex-1 h-[50px] relative">
+            <div className="pointer-events-auto flex-1 h-[50px] relative mr-5">
                 <div className="absolute inset-0 bg-white/70 backdrop-blur-md rounded-full shadow-lg border border-white/20 flex items-center pl-4 pr-1">
                     <input
                         type="text"
