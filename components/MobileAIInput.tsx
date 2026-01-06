@@ -47,15 +47,27 @@ export default function MobileAIInput() {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    if (!isVisible || isHiddenPath) return null;
+    // Updated visibility check
+    if (pathname.includes('/blog') || pathname === '/contact') return null;
+
+    const handleMenuToggle = () => {
+        const newState = !isMenuOpen;
+        setIsMenuOpen(newState);
+        if (!newState) {
+            // Reset to main view when closing
+            setTimeout(() => setMenuView('main'), 300);
+        }
+    };
 
     const handleSubmit = () => {
         if (!inputValue.trim()) return;
         // Trigger Fullscreen Mobile Chat
-        window.dispatchEvent(new CustomEvent("open-ai-mobile-fullscreen", {
+        window.dispatchEvent(new CustomEvent("open-ai-chat-with-message", { // Updated event name
             detail: { message: inputValue }
         }));
         setInputValue("");
+        // Close menu if open
+        if (isMenuOpen) setIsMenuOpen(false);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -64,29 +76,14 @@ export default function MobileAIInput() {
         }
     };
 
-    const cycleLanguage = () => {
-        const languages: Language[] = ["en", "ru", "ua"];
-        const currentIndex = languages.indexOf(language);
-        const nextIndex = (currentIndex + 1) % languages.length;
-        setLanguage(languages[nextIndex]);
-        // Close menu after selection? Maybe keep open for multi-choice? Let's close for cleaner UX.
-        // Actually user said: "button with language choice... list of available languages".
-        // Simple cycle is easier for now, but user said "list of available languages". 
-        // Let's implement cycle for simplicity as per previous nav, or small sub-menu?
-        // "When we press button... floating clouds buttons with language selection... demo... pricing".
-        // "At language selection button press -> drops list of languages".
-        // OK, so: Main Menu -> [Language] [Demo] [Pricing]
-        // [Language] click -> [EN] [RU] [UA] (replacing the Language button? or expand?)
-        // Let's keep it simple: The "Language" button in the menu just cycles or shows a small picker. 
-        // Let's make it cycle for now to fit the "cloud" design cleanly.
-    };
+    // Removed cycleLanguage function
 
     const getLanguageLabel = () => {
         switch (language) {
             case "en": return "English";
             case "ru": return "Русский";
             case "ua": return "Українська";
-            default: return "UA";
+            default: return "English"; // Default to English
         }
     };
 
@@ -95,54 +92,84 @@ export default function MobileAIInput() {
             {/* Menu Button Container */}
             <div className="pointer-events-auto relative z-[52]">
                 {/* Floating Menu Items */}
-                <AnimatePresence>
+                <AnimatePresence mode="wait">
                     {isMenuOpen && (
-                        <div className="absolute bottom-[60px] left-0 flex flex-col gap-3 min-w-[160px]">
-                            {/* Pricing */}
-                            <motion.a
-                                href="https://pricing.hotelmol.com"
-                                target="_blank"
-                                initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: 20, scale: 0.8 }}
-                                transition={{ delay: 0.1 }}
-                                className="bg-white/90 backdrop-blur-md text-[#0752A0] font-bold py-3 px-6 rounded-2xl shadow-lg border border-white/20 text-center"
-                            >
-                                {t("button.pricing") || "Pricing"}
-                            </motion.a>
+                        <motion.div
+                            className="absolute bottom-[60px] left-0 flex flex-col gap-3 min-w-[160px]"
+                            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                        >
+                            {menuView === 'main' ? (
+                                <>
+                                    {/* Pricing */}
+                                    <motion.a
+                                        href="https://pricing.hotelmol.com"
+                                        target="_blank"
+                                        className="bg-white/90 backdrop-blur-md text-[#0752A0] font-bold py-3 px-6 rounded-2xl shadow-lg border border-white/20 text-center"
+                                    >
+                                        {t("button.pricing") || "Pricing"}
+                                    </motion.a>
 
-                            {/* Demo */}
-                            <motion.a
-                                href="https://demo.hotelmol.com"
-                                target="_blank"
-                                initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: 20, scale: 0.8 }}
-                                transition={{ delay: 0.05 }}
-                                className="bg-white/90 backdrop-blur-md text-[#0752A0] font-bold py-3 px-6 rounded-2xl shadow-lg border border-white/20 text-center"
-                            >
-                                Demo
-                            </motion.a>
+                                    {/* Demo */}
+                                    <motion.a
+                                        href="https://demo.hotelmol.com"
+                                        target="_blank"
+                                        className="bg-white/90 backdrop-blur-md text-[#0752A0] font-bold py-3 px-6 rounded-2xl shadow-lg border border-white/20 text-center"
+                                    >
+                                        Demo
+                                    </motion.a>
 
-                            {/* Language Switch */}
-                            <motion.button
-                                onClick={cycleLanguage}
-                                initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: 20, scale: 0.8 }}
-                                className="bg-white/90 backdrop-blur-md text-[#0752A0] font-bold py-3 px-6 rounded-2xl shadow-lg border border-white/20 flex items-center justify-center gap-2"
-                            >
-                                <Globe className="w-4 h-4" />
-                                {getLanguageLabel()}
-                            </motion.button>
-                        </div>
+                                    {/* Language Switch Trigger */}
+                                    <button
+                                        onClick={() => setMenuView('languages')}
+                                        className="bg-white/90 backdrop-blur-md text-[#0752A0] font-bold py-3 px-6 rounded-2xl shadow-lg border border-white/20 flex items-center justify-center gap-2"
+                                    >
+                                        <Globe className="w-4 h-4" />
+                                        {getLanguageLabel()}
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    {/* Back Button */}
+                                    <div className="flex justify-start">
+                                        <button
+                                            onClick={() => setMenuView('main')}
+                                            className="bg-white/90 backdrop-blur-md text-[#0752A0] font-bold py-2 px-4 rounded-full shadow-lg border border-white/20 flex items-center justify-center w-[33%]"
+                                        >
+                                            <ArrowLeft className="w-5 h-5" />
+                                        </button>
+                                    </div>
+
+                                    {/* Language Options */}
+                                    <button
+                                        onClick={() => setLanguage('en')}
+                                        className={`backdrop-blur-md font-bold py-3 px-6 rounded-2xl shadow-lg border border-white/20 text-center ${language === 'en' ? 'bg-[#0752A0] text-white' : 'bg-white/90 text-[#0752A0]'}`}
+                                    >
+                                        English
+                                    </button>
+                                    <button
+                                        onClick={() => setLanguage('ru')}
+                                        className={`backdrop-blur-md font-bold py-3 px-6 rounded-2xl shadow-lg border border-white/20 text-center ${language === 'ru' ? 'bg-[#0752A0] text-white' : 'bg-white/90 text-[#0752A0]'}`}
+                                    >
+                                        Русский
+                                    </button>
+                                    <button
+                                        onClick={() => setLanguage('ua')}
+                                        className={`backdrop-blur-md font-bold py-3 px-6 rounded-2xl shadow-lg border border-white/20 text-center ${language === 'ua' ? 'bg-[#0752A0] text-white' : 'bg-white/90 text-[#0752A0]'}`}
+                                    >
+                                        Українська
+                                    </button>
+                                </>
+                            )}
+                        </motion.div>
                     )}
                 </AnimatePresence>
 
-                {/* Main Toggle Button - Resized to 42px */}
+                {/* Main Toggle Button - Reverted to 44px */}
                 <button
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="w-[42px] h-[42px] rounded-full bg-[#0752A0] shadow-[0_4px_20px_rgba(7,82,160,0.4)] flex items-center justify-center transition-transform active:scale-95"
+                    onClick={handleMenuToggle}
+                    className="w-[44px] h-[44px] rounded-full bg-[#0752A0] shadow-[0_4px_20px_rgba(7,82,160,0.4)] flex items-center justify-center transition-transform active:scale-95"
                     aria-label="Menu"
                 >
                     <motion.div
@@ -156,8 +183,8 @@ export default function MobileAIInput() {
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 xmlSpace="preserve"
-                                width="36"
-                                height="36"
+                                width="38" // Reverted to 38
+                                height="38" // Reverted to 38
                                 version="1.1"
                                 viewBox="0 0 203.18 203.18"
                                 style={{
@@ -188,10 +215,10 @@ export default function MobileAIInput() {
                 </button>
             </div>
 
-            {/* Input Field with Animation - Resized to 42px height, Font 16px to prevent zoom */}
-            {/* Base mr-2 (narrower gap), when scroll active mr-[52px] to fit 42px button + 10px gap */}
+            {/* Input Field with Animation - Reverted to 44px height, Font 16px */}
+            {/* Base mr-2, when scroll active mr-[54px] (44 + 10) */}
             <div
-                className={`pointer-events-auto flex-1 h-[42px] relative transition-all duration-500 ease-in-out ${showScrollBtn ? 'mr-[52px]' : 'mr-2'}`}
+                className={`pointer-events-auto flex-1 h-[44px] relative transition-all duration-500 ease-in-out ${showScrollBtn ? 'mr-[54px]' : 'mr-2'}`} // Reverted to 44px height, mr-[54px]
             >
                 <div className="absolute inset-0 bg-white/70 backdrop-blur-md rounded-full shadow-lg border border-white/20 flex items-center pl-4 pr-1">
                     <input
@@ -199,20 +226,22 @@ export default function MobileAIInput() {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        placeholder={language === 'ru' || language === 'ua' ? "Спросите что-нибудь..." : "Ask something..."}
+                        placeholder={t("aiWidget.inputPlaceholder") || "Ask something..."} // Updated placeholder
                         className="flex-1 bg-transparent border-none outline-none text-[#0752A0] placeholder:text-[#0752A0]/50 text-[16px] font-medium"
                     />
                     <button
                         onClick={handleSubmit}
-                        // Send Button resized to 34px, shrink-0 to prevent oval shape
-                        className="w-[34px] h-[34px] shrink-0 bg-[#0752A0] rounded-full flex items-center justify-center shadow-md active:scale-95 transition-transform"
+                        // Send Button: Replaced Icon with Text "Ask Question", pill shape
+                        className="h-[36px] px-4 bg-[#0752A0] rounded-full flex items-center justify-center shadow-md active:scale-95 transition-transform shrink-0" // Updated send button styling
                     >
-                        <ArrowUp className="w-5 h-5 text-white" />
+                        <span className="text-white text-xs font-bold whitespace-nowrap leading-none">
+                            {t("button.askQuestion")}
+                        </span>
                     </button>
                 </div>
             </div>
 
-            {/* Scroll To Top Button - Mobile Integrated - Resized to 42px */}
+            {/* Scroll To Top Button - Mobile Integrated - Reverted to 44px */}
             <AnimatePresence>
                 {showScrollBtn && (
                     <motion.button
@@ -220,7 +249,7 @@ export default function MobileAIInput() {
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         exit={{ opacity: 0, scale: 0.5, x: 20 }}
                         onClick={scrollToTop}
-                        className="pointer-events-auto absolute right-4 bottom-0 w-[42px] h-[42px] rounded-full bg-[#0752A0] shadow-[0_4px_20px_rgba(7,82,160,0.4)] flex items-center justify-center transition-transform active:scale-95 border border-white/20"
+                        className="pointer-events-auto absolute right-4 bottom-0 w-[44px] h-[44px] rounded-full bg-[#0752A0] shadow-[0_4px_20px_rgba(7,82,160,0.4)] flex items-center justify-center transition-transform active:scale-95 border border-white/20" // Reverted to 44px
                         aria-label="Scroll to top"
                     >
                         {/* Chevron Up "House-like" */}
@@ -244,3 +273,4 @@ export default function MobileAIInput() {
         </div>
     );
 }
+```
