@@ -30,6 +30,7 @@ export default function AskAIWidget() {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [isMobileFullscreen, setIsMobileFullscreen] = useState(false); // Added isMobileFullscreen state
+    const [isShifted, setIsShifted] = useState(false);
 
     // Initialize session ID
     useEffect(() => {
@@ -46,7 +47,7 @@ export default function AskAIWidget() {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, isLoading]);
 
-    // Listen for custom event to open chat (from mobile nav)
+    // Listen for custom event to open chat (from mobile nav) and desktop scroll
     useEffect(() => {
         const handleOpen = () => {
             setIsOpen(true);
@@ -81,14 +82,21 @@ export default function AskAIWidget() {
             }, 100);
         };
 
+        const handleDesktopScroll = (e: CustomEvent<{ visible: boolean }>) => {
+            setIsShifted(e.detail?.visible);
+        };
+
         // We'll use a specific event checking for detail
         window.addEventListener("open-ai-chat", handleOpen);
         window.addEventListener("open-ai-chat-with-message" as any, handleOpenWithMessage as any);
-        window.addEventListener("open-ai-mobile-fullscreen" as any, handleMobileFullscreen as any); // Added new event listener
+        window.addEventListener("open-ai-mobile-fullscreen" as any, handleMobileFullscreen as any);
+        window.addEventListener("desktop-scroll-visible" as any, handleDesktopScroll as any);
+
         return () => {
             window.removeEventListener("open-ai-chat", handleOpen);
             window.removeEventListener("open-ai-chat-with-message" as any, handleOpenWithMessage as any);
-            window.removeEventListener("open-ai-mobile-fullscreen" as any, handleMobileFullscreen as any); // Cleanup
+            window.removeEventListener("open-ai-mobile-fullscreen" as any, handleMobileFullscreen as any);
+            window.removeEventListener("desktop-scroll-visible" as any, handleDesktopScroll as any);
         };
     }, []);
 
@@ -331,14 +339,16 @@ export default function AskAIWidget() {
                     <motion.button
                         layout
                         initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        animate={{ opacity: 1, scale: 1, right: isShifted ? 60 : 8 }}
                         exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.3 }}
                         onClick={() => setIsOpen(true)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         // UI Polish: Trigger height +4px (h-[44px]), narrowed gap for text exactly by 3px (gap-1.5 -> gap-[3px])
-                        // Shifted 8px to the left (right-2)
-                        className="pointer-events-auto absolute bottom-4 right-2 group hidden md:flex items-center gap-[3px] pl-1.5 pr-4 h-[44px] bg-[#0752A0] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.4)] border border-white/30 hover:shadow-[0_0_25px_rgba(255,255,255,0.6)] transition-all duration-300"
+                        // Shifted 8px to the left (right-2) - actually uses inline style/animate for smooth shift
+                        // We use `fixed` instead of absolute to be safe relative to viewport, similar to scroll button
+                        className="pointer-events-auto fixed bottom-4 z-[46] hidden md:flex items-center gap-[3px] pl-1.5 pr-4 h-[44px] bg-[#0752A0] rounded-full shadow-[0_0_20px_rgba(255,255,255,0.4)] border border-white/30 hover:shadow-[0_0_25px_rgba(255,255,255,0.6)]"
                     >
                         {/* Content */}
                         <div className="relative z-10 flex items-center gap-[3px]">

@@ -156,8 +156,8 @@ export default function MobileAIInput() {
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 xmlSpace="preserve"
-                                width="37"
-                                height="37"
+                                width="45"
+                                height="45"
                                 version="1.1"
                                 viewBox="0 0 203.18 203.18"
                                 style={{

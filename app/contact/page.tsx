@@ -193,7 +193,7 @@ export default function Contact() {
                             </Card>
                             <Card className="p-6 md:p-8">
                                 <h3 className="font-serif text-xl font-semibold mb-4">{t("contact.quickSupport")}</h3>
-                                <div className="flex gap-9 items-center justify-center py-4">
+                                <div className="flex gap-[35px] items-center justify-center py-4">
                                     <a href="https://t.me/hotelmolmanager" target="_blank" rel="noopener noreferrer" className="transition-transform hover:scale-110">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" viewBox="0 0 240.1 240.1">
                                             <linearGradient id="Oval_1_" gradientUnits="userSpaceOnUse" x1="-838.041" y1="660.581" x2="-838.041" y2="660.3427" gradientTransform="matrix(1000 0 0 -1000 838161 660581)">

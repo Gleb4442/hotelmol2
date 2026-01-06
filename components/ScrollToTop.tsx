@@ -11,7 +11,19 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      setIsVisible(window.scrollY > 300);
+      const shouldBeVisible = window.scrollY > 300;
+
+      // Dispatch event for other components (like AskAIWidget) to react
+      window.dispatchEvent(new CustomEvent("desktop-scroll-visible", {
+        detail: { visible: shouldBeVisible }
+      }));
+
+      if (shouldBeVisible) {
+        // Delay showing button slightly to allow Ask AI widget to shift out of the way first
+        setTimeout(() => setIsVisible(true), 150);
+      } else {
+        setIsVisible(false);
+      }
     };
 
     window.addEventListener("scroll", toggleVisibility);
@@ -22,20 +34,10 @@ export default function ScrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Logic:
-  // 1. Hide on Contact page
-  // 2. Hide on About page
-  // 3. Hide on Blog List page (/blog), but SHOW on Blog Article (/blog/slug)
   const isContact = pathname === "/contact";
   const isAbout = pathname === "/about";
   const isBlogList = pathname === "/blog";
   const isBlogArticle = pathname.startsWith("/blog/") && pathname.length > "/blog/".length;
-
-  // If it's a blog article, allow showing (unless specifically excluded logic overrides, but here we just want to ensure it SHOWS on article)
-  // But wait, the request is: "return button on all pages EXCEPT contact, about, and blog list".
-  // So: Show if (!Contact && !About && !BlogList).
-  // Note: Blog Article passes !BlogList.
-  // Also need to consider Home, Solutions, etc. -> They pass all checks.
 
   if (isContact || isAbout || isBlogList) {
     return null;
@@ -47,7 +49,7 @@ export default function ScrollToTop() {
         <button
           onClick={scrollToTop}
           data-testid="button-scroll-to-top-desktop"
-          className="hidden md:flex fixed right-10 bottom-10 z-[45] p-2.5 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl border border-white/10 backdrop-blur-md bg-[#0752A0]/80 hover:bg-[#0752A0]/90"
+          className="hidden md:flex fixed right-2 bottom-4 z-[45] w-[44px] h-[44px] rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-[0_0_20px_rgba(7,82,160,0.4)] border border-white/30 backdrop-blur-md bg-[#0752A0] hover:bg-[#0752A0]/90 items-center justify-center p-0"
           aria-label="Scroll to top"
         >
           <ArrowUp className="w-5 h-5 text-white" />
