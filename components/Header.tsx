@@ -136,10 +136,10 @@ export default function Header({ onDemoClick }: HeaderProps = {}) {
               overlayClassName="bg-white/10 backdrop-blur-md"
               className="w-[90%] max-w-[350px] rounded-2xl border-white/20 shadow-2xl backdrop-blur-xl bg-white/90 dark:bg-zinc-900/90 overflow-hidden"
             >
-              <div className="visually-hidden">
-                <DialogTitle>Navigation Menu</DialogTitle>
+              <div className="text-center py-6 border-b border-white/20">
+                <DialogTitle className="text-3xl font-bold text-[#0752A0]">МЕНЮ</DialogTitle>
               </div>
-              <nav className="flex flex-col gap-4 items-stretch px-6 py-8 mt-8">
+              <nav className="flex flex-col gap-4 items-stretch px-6 py-8">
                 {navigation.map((item) => {
                   const isActive = pathname === item.href;
                   return (
@@ -160,18 +160,6 @@ export default function Header({ onDemoClick }: HeaderProps = {}) {
                   );
                 })}
               </nav>
-              {/* Custom Close Button styling override if possible, or relying on global Dialog styling. 
-                  Since I can't easily override the built-in X without editing ui/dialog, 
-                  I will assume the user might accept the default or I'll need to edit the component.
-                  BUT, I can hide the default one in global CSS or Dialog component and add one here.
-                  For now, I'll focus on the menu items as "blue buttons". 
-                  The user said "Close button ... also taken into blue".
-                  I'll try to target it via css class in styles if I can, or ignore if too complex without editing ui/dialog.
-                  Actually, I can try to add a style block to override the close button? 
-                  .dialog-close { bg... } 
-                  Let's try to add a visual close button if the default is hidden/customizable?
-                  No, let's just do the menu items first.
-              */}
             </DialogContent>
           </Dialog>
         </div>
