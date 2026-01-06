@@ -219,9 +219,9 @@ export default function MobileAIInput() {
             {/* Input Field with Animation - Reverted to 44px height, Font 16px */}
             {/* Base mr-2, when scroll active mr-[54px] (44 + 10) */}
             <div
-                className={`pointer-events-auto flex-1 h-[44px] relative transition-all duration-500 ease-in-out ${showScrollBtn ? 'mr-[54px]' : 'mr-2'}`} // Reverted to 44px height, mr-[54px]
+                className={`pointer-events-auto flex-1 h-[44px] relative transition-[margin] duration-300 ease-out ${showScrollBtn ? 'mr-[54px]' : 'mr-2'}`}
             >
-                <div className="absolute inset-0 bg-white/70 backdrop-blur-md rounded-full shadow-lg border border-white/20 flex items-center pl-4 pr-2">
+                <div className="absolute inset-0 bg-white/70 backdrop-blur-md rounded-full shadow-lg border border-white/20 flex items-center pl-4 pr-2 transition-none">
                     <input
                         type="text"
                         value={inputValue}
