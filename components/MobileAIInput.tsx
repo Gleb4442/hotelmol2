@@ -221,7 +221,7 @@ export default function MobileAIInput() {
             <div
                 className={`pointer-events-auto flex-1 h-[44px] relative transition-all duration-500 ease-in-out ${showScrollBtn ? 'mr-[54px]' : 'mr-2'}`} // Reverted to 44px height, mr-[54px]
             >
-                <div className="absolute inset-0 bg-white/70 backdrop-blur-md rounded-full shadow-lg border border-white/20 flex items-center pl-4 pr-1">
+                <div className="absolute inset-0 bg-white/70 backdrop-blur-md rounded-full shadow-lg border border-white/20 flex items-center pl-4 pr-2">
                     <input
                         type="text"
                         value={inputValue}

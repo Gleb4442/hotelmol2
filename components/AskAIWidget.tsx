@@ -311,7 +311,7 @@ export default function AskAIWidget() {
                                     className="w-full pr-12 py-6 bg-white/60 dark:bg-black/40 border-white/30 focus-visible:ring-offset-0 focus-visible:ring-[#20629B] focus-visible:ring-[2.5px] placeholder:text-muted-foreground/80 shadow-inner rounded-full text-[16px] md:text-sm"
                                     disabled={isLoading}
                                 />
-                                <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                                <div className="absolute right-2 top-1/2 -translate-y-1/2">
                                     {/* UI Polish: Minimalistic ArrowUp icon, gray background circle like image */}
                                     {/* Keeping previous blue style as per 'Оставь цвет подсветки' but adapting to minimal arrow requested */}
                                     <Button
