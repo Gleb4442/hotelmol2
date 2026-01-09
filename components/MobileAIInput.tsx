@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUp, Globe, ExternalLink, X, ArrowLeft } from "lucide-react";
 import { useTranslation } from "@/lib/TranslationContext";
 import { usePathname } from "next/navigation";
+import { useCookieBanner } from "@/lib/CookieBannerContext";
 import type { Language } from "@/lib/translations";
 
 export default function MobileAIInput() {
@@ -13,7 +14,7 @@ export default function MobileAIInput() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [menuView, setMenuView] = useState<'main' | 'languages'>('main');
     const [inputValue, setInputValue] = useState("");
-    const [isVisible, setIsVisible] = useState(false);
+    const { isCookieBannerVisible } = useCookieBanner();
     const [showScrollBtn, setShowScrollBtn] = useState(false);
 
     // Visibility logic: hide on blog and contact pages
@@ -26,15 +27,7 @@ export default function MobileAIInput() {
     const isBlogArticle = pathname.startsWith("/blog/") && pathname.length > "/blog/".length;
     const isHiddenPath = (pathname.startsWith("/blog") && !isBlogArticle) || pathname === "/contact";
 
-    useEffect(() => {
-        const consent = localStorage.getItem("cookieConsent");
-        if (consent) setIsVisible(true);
-        const checkConsent = () => {
-            if (localStorage.getItem("cookieConsent")) setIsVisible(true);
-        };
-        const interval = setInterval(checkConsent, 1000);
-        return () => clearInterval(interval);
-    }, []);
+    // Cookie consent state is now handled by useCookieBanner
 
     // Scroll Logic for Mobile Button
     useEffect(() => {
@@ -50,7 +43,8 @@ export default function MobileAIInput() {
     };
 
     // Updated visibility check
-    if (isHiddenPath) return null;
+    // Updated visibility check: hide on specific paths OR if cookie banner is visible (consent missing)
+    if (isCookieBannerVisible || isHiddenPath) return null;
 
     const handleMenuToggle = () => {
         const newState = !isMenuOpen;
