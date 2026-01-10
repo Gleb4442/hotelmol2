@@ -24,8 +24,7 @@ export default function MobileAIInput() {
     // Original MobileBottomNav logic: if (!isVisible || isHiddenPath) return null;
     // isHiddenPath = pathname.startsWith("/blog") || pathname === "/contact";
     // Let's stick to this for consistency unless user said otherwise. User didn't specify visibility for wdiget, but implicitly "make on mobile version...".
-    const isBlogArticle = pathname.startsWith("/blog/") && pathname.length > "/blog/".length;
-    const isHiddenPath = (pathname.startsWith("/blog") && !isBlogArticle) || pathname === "/contact";
+    const isHiddenPath = pathname.startsWith("/blog") || pathname === "/contact";
 
     // Cookie consent state is now handled by useCookieBanner
 
