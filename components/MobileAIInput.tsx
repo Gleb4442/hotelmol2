@@ -31,7 +31,7 @@ export default function MobileAIInput() {
     // Scroll Logic for Mobile Button
     useEffect(() => {
         const handleScroll = () => {
-            setShowScrollBtn(window.scrollY > 300 && isBlogArticle);
+            setShowScrollBtn(window.scrollY > 300);
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
