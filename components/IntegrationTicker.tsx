@@ -6,57 +6,57 @@ import { useTranslation } from "@/lib/TranslationContext";
 const allIntegrations = [
   { name: "Telegram", icon: SiTelegram, color: "#0088cc", comingSoon: false, hideOnDesktop: false },
   {
-    name: "Servio", icon: () => (
-      <img src="/assets/image_1760225380507.png" alt="Servio" className="w-10 h-10 object-contain" />
+    name: "Servio", icon: (props: any) => (
+      <img {...props} src="/assets/image_1760225380507.png" alt="Servio" className={`${props.className} object-contain`} />
     ), color: "#2563eb", comingSoon: false, hideOnDesktop: false
   },
   {
-    name: "Tilda", icon: () => (
-      <img src="/assets/image_1760225370940.png" alt="Tilda" className="w-10 h-10 object-contain" />
+    name: "Tilda", icon: (props: any) => (
+      <img {...props} src="/assets/image_1760225370940.png" alt="Tilda" className={`${props.className} object-contain`} />
     ), color: "#ff6347", comingSoon: false, hideOnDesktop: true
   },
   { name: "WordPress", icon: SiWordpress, color: "#21759b", comingSoon: false, hideOnDesktop: true },
   { name: "Wix", icon: SiWix, color: "#0c6ebd", comingSoon: false, hideOnDesktop: true },
   {
-    name: "Messenger", icon: () => (
-      <img src="/assets/messenger-logo.png" alt="Messenger" className="w-10 h-10 object-contain" />
+    name: "Messenger", icon: (props: any) => (
+      <img {...props} src="/assets/messenger-logo.png" alt="Messenger" className={`${props.className} object-contain`} />
     ), color: "#0084FF", comingSoon: false, hideOnDesktop: false
   },
   {
-    name: "Protel", icon: () => (
-      <img src="/assets/protel-logo.png" alt="Protel" className="w-10 h-10 object-contain" />
+    name: "Protel", icon: (props: any) => (
+      <img {...props} src="/assets/protel-logo.png" alt="Protel" className={`${props.className} object-contain`} />
     ), color: "#E63946", comingSoon: false, hideOnDesktop: false
   },
   {
-    name: "Exely", icon: () => (
-      <img src="/assets/image_1764952906072.png" alt="Exely" className="w-10 h-10 object-contain" />
+    name: "Exely", icon: (props: any) => (
+      <img {...props} src="/assets/image_1764952906072.png" alt="Exely" className={`${props.className} object-contain`} />
     ), color: "#7C3AED", comingSoon: true, hideOnDesktop: false
   },
   {
-    name: "EasyMS", icon: () => (
-      <img src="/assets/image_1764952914052.png" alt="EasyMS" className="w-10 h-10 object-contain" />
+    name: "EasyMS", icon: (props: any) => (
+      <img {...props} src="/assets/image_1764952914052.png" alt="EasyMS" className={`${props.className} object-contain`} />
     ), color: "#2563eb", comingSoon: true, hideOnDesktop: false
   },
   {
-    name: "Mews", icon: () => (
-      <img src="/assets/mews-logo.png" alt="Mews" className="w-10 h-10 object-contain" />
+    name: "Mews", icon: (props: any) => (
+      <img {...props} src="/assets/mews-logo.png" alt="Mews" className={`${props.className} object-contain`} />
     ), color: "#FFFFFF", comingSoon: true, hideOnDesktop: true
   },
   {
-    name: "Cloudbeds", icon: () => (
-      <img src="/assets/cloudbeds-logo.png" alt="Cloudbeds" className="w-10 h-10 object-contain" />
+    name: "Cloudbeds", icon: (props: any) => (
+      <img {...props} src="/assets/cloudbeds-logo.png" alt="Cloudbeds" className={`${props.className} object-contain`} />
     ), color: "#4F6FED", comingSoon: true, hideOnDesktop: true
   },
   { name: "WhatsApp", icon: SiWhatsapp, color: "#25d366", comingSoon: true, hideOnDesktop: false },
   { name: "Instagram", icon: SiInstagram, color: "#e4405f", comingSoon: true, hideOnDesktop: false },
   {
-    name: "Booking", icon: () => (
-      <img src="/assets/booking-logo.png" alt="Booking.com" className="w-10 h-10 object-contain" />
+    name: "Booking", icon: (props: any) => (
+      <img {...props} src="/assets/booking-logo.png" alt="Booking.com" className={`${props.className} object-contain`} />
     ), color: "#003580", comingSoon: true, hideOnDesktop: false
   },
   {
-    name: "Expedia", icon: () => (
-      <img src="/assets/expedia-logo.png" alt="Expedia" className="w-12 h-12 object-contain" />
+    name: "Expedia", icon: (props: any) => (
+      <img {...props} src="/assets/expedia-logo.png" alt="Expedia" className={`${props.className} object-contain`} />
     ), color: "#FFCC29", comingSoon: true, hideOnDesktop: false
   },
 ];
@@ -72,9 +72,9 @@ function IntegrationItem({ integration, compact = false }: { integration: typeof
       className={`flex flex-col items-center gap-2 md:gap-3 group ${compact ? 'min-w-[90px]' : 'min-w-[100px] md:min-w-[120px]'}`}
       role="listitem"
     >
-      <div className="relative p-3 md:p-4 rounded-xl bg-background border border-border/50 group-hover:border-primary/30 transition-colors overflow-visible">
+      <div className="relative p-1.5 md:p-2 rounded-xl bg-background border border-border/50 group-hover:border-primary/30 transition-colors overflow-visible">
         <Icon
-          className="h-8 w-8 md:h-10 md:w-10 transition-colors"
+          className="h-10 w-10 md:h-[52px] md:w-[52px] transition-colors"
           style={{ color: integration.color }}
           aria-label={integration.name}
         />
