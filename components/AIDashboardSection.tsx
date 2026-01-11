@@ -103,7 +103,7 @@ function BookingsWidget() {
   const { t } = useTranslation();
   const widgetRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(widgetRef, { once: true, amount: 0.3 });
-  const { count: displayCount, startAnimation } = useCountAnimation(86, 2000);
+  const { count: displayCount, startAnimation } = useCountAnimation(127, 2000);
 
   const monthlyData = [
     { month: "Jan", height: 52 },
@@ -216,7 +216,7 @@ function UpsellsWidget() {
             <TrendingUp className="h-4 w-4 text-green-600" />
             <span className="text-sm text-muted-foreground">{t("home.aiDashboard.upsells.total")}</span>
           </div>
-          <span className="text-xl font-bold text-primary" data-testid="upsells-total">$282</span>
+          <span className="text-xl font-bold text-primary" data-testid="upsells-total">$302</span>
         </div>
       </div>
     </Card>
