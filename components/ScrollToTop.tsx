@@ -35,11 +35,9 @@ export default function ScrollToTop() {
   };
 
   const isContact = pathname === "/contact";
-  const isAbout = pathname === "/about";
   const isBlogList = pathname === "/blog";
-  const isBlogArticle = pathname.startsWith("/blog/") && pathname.length > "/blog/".length;
 
-  if (isContact || isAbout || isBlogList) {
+  if (isContact || isBlogList) {
     return null;
   }
 
